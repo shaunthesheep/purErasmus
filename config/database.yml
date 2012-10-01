@@ -1,0 +1,17 @@
+common: &common
+  adapter: postgresql
+  username: purerasmus
+  password: purerasmus_db_pass
+  host: localhost
+
+development:
+  <<: *common
+  database: purerasmus_dev
+
+test:
+  <<: *common
+  database: purerasmus_test
+
+production:
+  <<: *common
+  database: purerasmus_prod
