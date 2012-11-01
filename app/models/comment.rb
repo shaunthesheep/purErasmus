@@ -1,3 +1,10 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :description
+	# Attributes
+	#-----------
+	attr_accessible :description
+
+	# Associations
+	#-------------
+	belongs_to :topic
+	belongs_to :user
 end

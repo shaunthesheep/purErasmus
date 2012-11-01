@@ -1,3 +1,9 @@
 class Topic < ActiveRecord::Base
-  attr_accessible :description, :title
+	# Attributes
+	#-----------
+	attr_accessible :description, :title
+
+	# Associations
+	#-------------
+	has_many :comments
 end

@@ -1,3 +1,9 @@
 class Country < ActiveRecord::Base
-  attr_accessible :name
+	# Attributes
+	#-----------
+	attr_accessible :name
+
+	# Associations
+	#-------------
+	has_many :citys
 end

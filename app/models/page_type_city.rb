@@ -1,3 +1,5 @@
 class PageTypeCity < ActiveRecord::Base
-  attr_accessible :name
+	# Attributes
+	#-----------
+  	attr_accessible :name
 end
