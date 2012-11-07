@@ -6,9 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       	t.string :email
       	t.string :password
 
+        t.integer :admin_university_id
       	t.integer :home_university_id
       	t.integer :foreign_university_id
-      	t.integer :admin_university_id
       	t.integer :user_type_id
 
       t.timestamps

@@ -6,6 +6,5 @@ class University < ActiveRecord::Base
 	# Associations
 	#-------------
 	belongs_to :city
-	has_many :pages, :through => :page_type_universitys # syntax?
-
+	has_many :pages
 end

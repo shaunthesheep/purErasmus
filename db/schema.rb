@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101162623) do
+ActiveRecord::Schema.define(:version => 20121107164439) do
 
   create_table "cities", :force => true do |t|
     t.string   "title"
     t.text     "body"
+    t.integer  "country_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -34,15 +35,10 @@ ActiveRecord::Schema.define(:version => 20121101162623) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "page_type_cities", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "page_type_universities", :force => true do |t|
+  create_table "page_types", :force => true do |t|
     t.string   "name"
     t.boolean  "is_mandatory"
+    t.integer  "type"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -50,13 +46,17 @@ ActiveRecord::Schema.define(:version => 20121101162623) do
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "city_id"
+    t.integer  "university_id"
+    t.integer  "page_type_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "sections", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.integer  "page_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20121101162623) do
   create_table "topics", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -90,9 +91,9 @@ ActiveRecord::Schema.define(:version => 20121101162623) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password"
+    t.integer  "admin_university_id"
     t.integer  "home_university_id"
     t.integer  "foreign_university_id"
-    t.integer  "admin_university_id"
     t.integer  "user_type_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false

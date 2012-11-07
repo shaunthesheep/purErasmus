@@ -4,6 +4,8 @@ class CreateCities < ActiveRecord::Migration
     	t.string :title
     	t.text :body
 
+      t.integer :country_id
+
       t.timestamps
     end
   end

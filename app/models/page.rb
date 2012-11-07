@@ -5,5 +5,9 @@ class Page < ActiveRecord::Base
 
  	# Associations
  	#-------------
+ 	belongs_to :city
+ 	belongs_to :university
+ 	belongs_to :page_type
+
  	has_many :sections
 end

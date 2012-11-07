@@ -4,6 +4,8 @@ class CreateSections < ActiveRecord::Migration
       t.string :title
       t.text :description
 
+      t.integer :page_id
+
       t.timestamps
     end
   end

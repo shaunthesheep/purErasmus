@@ -5,7 +5,8 @@ class City < ActiveRecord::Base
 
 	# Associations 
 	#-------------
-	has_many :pages, :through => :page_type_citys # syntax?
-	has_many :universitys
+	belongs_to :country
+	has_many :pages
+	has_many :universities
 	has_many :topics
 end

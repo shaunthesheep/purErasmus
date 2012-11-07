@@ -4,6 +4,10 @@ class CreatePages < ActiveRecord::Migration
     	t.string :title
     	t.text :body
 
+    	t.integer :city_id
+    	t.integer :university_id
+    	t.integer :page_type_id
+
       	t.timestamps
     end
   end
