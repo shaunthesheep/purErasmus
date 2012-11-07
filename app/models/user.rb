@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 	#-------------
 	has_many :comments
 	has_many :topics
-	has_one :admin_university, :class_name => "University"
+	belongs_to :admin_university, :class_name => "University"
 	belongs_to :home_university, :class_name => "University"
 	belongs_to :foreign_university, :class_name => "University"
 	belongs_to :user_type, :class_name => "UserType"
