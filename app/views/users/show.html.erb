@@ -1,2 +1,4 @@
-<h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
+<h1>Name: <%= user.first_name %> <%= user.last_name %></h1>
+<h2>Email: <%= user.email %></h2>
+<h2>Home university: <%= link_to user.home_university.name_english, user.home_university %></h2>
+<h2>Foreign university: <%= user.foreign_university.name_english, user.foreign_university %></h2>
