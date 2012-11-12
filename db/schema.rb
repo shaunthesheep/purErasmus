@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20121107164439) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password"
+    t.string   "password_salt"
     t.integer  "admin_university_id"
     t.integer  "home_university_id"
     t.integer  "foreign_university_id"
