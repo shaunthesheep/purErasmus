@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @users = User.all
   end
@@ -9,10 +10,10 @@ class UsersController < ApplicationController
 
   def edit
   	@user = User.find(params[:id])
-  	if session[:id] != @user.id
-  		flash[:notice] = "Sorry, you can't edit this user"
-  		redirect_to users_path
-  	end
+#  	if session[:id] != @user.id
+#  		flash[:notice] = "Sorry, you can't edit this user"
+#  		redirect_to :action => 'index'
+#  	end
   end
 
   def new
@@ -27,4 +28,18 @@ class UsersController < ApplicationController
       render :action => "new"
     end
   end
+
+  def update
+     @user = User.find(params[:id])
+     if @user.update_attributes(params[:user])
+        redirect_to :action => 'show', :id => @user
+     else
+        render :action => 'edit'
+     end
+  end
+
+  def delete
+      User.find(params[:id]).destroy
+      redirect_to :action => 'index'
+   end
 end
