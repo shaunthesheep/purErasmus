@@ -41,7 +41,7 @@ class UniversitiesController < ApplicationController
   def destroy
       @university = University.find(params[:id])
       @university.destroy
-      redirect_to :action => 'index'
+      redirect_to universities_path
   end
 
 end
