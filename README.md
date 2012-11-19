@@ -1,4 +1,4 @@
-Yes
+YesNo
 purErasmus
 ==========
 
