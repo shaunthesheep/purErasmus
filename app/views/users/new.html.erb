@@ -1,26 +1,26 @@
 <%= form_for @user do |uForm| %>
-<table>
-<tr>
-	<td>First Name:</td>
-	<td><%= uForm.text_field :first_name %></td>
-</tr>
-<tr>
-	<td>Last Name:</td>
-	<td><%= uForm.text_field :last_name %></td>
-</tr>
-<tr>
-	<td>Email:</td>
-	<td><%= uForm.email_field :email %></td>
-</tr>
-<tr>
-	<td>Password:</td>
-	<td><%= uForm.password_field :new_password %></td>
-</tr>
-<tr>
-	<td>Password (again):</td>
-	<td><%= uForm.password_field :new_password_confirmation %></td>
-</tr>
-</table>
-<%= uForm.submit "Create" %><br>
-<%= link_to 'Back', {:action => 'index'} %>
+	<table>
+		<tr>
+			<td>First Name:</td>
+			<td><%= uForm.text_field :first_name %></td>
+		</tr>
+		<tr>
+			<td>Last Name:</td>
+			<td><%= uForm.text_field :last_name %></td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td><%= uForm.email_field :email %></td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+			<td><%= uForm.password_field :new_password %></td>
+		</tr>
+		<tr>
+			<td>Password (again):</td>
+			<td><%= uForm.password_field :new_password_confirmation %></td>
+		</tr>
+	</table>
+	<%= uForm.submit "Create" %>
+	<%= link_to 'Back', {:action => 'index'} %>
 <% end %>

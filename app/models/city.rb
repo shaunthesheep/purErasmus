@@ -1,7 +1,7 @@
 class City < ActiveRecord::Base
 	# Attributes
 	#-----------
-	attr_accessible :title, :body # name, description
+	attr_accessible :name, :description
 
 	# Associations 
 	#-------------
