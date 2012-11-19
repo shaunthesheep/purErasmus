@@ -1,0 +1,18 @@
+<h2>Cities</h2>
+<% if @cities.empty? %>
+<em> No cities found</em>
+<br>
+<% else %> 
+	<table>
+		<tr>
+			<th>Name</th>
+		</tr>
+<% @cities.each do |city| %>
+		<tr>
+			<td><%= link_to city.title, city %></td>
+		</tr>
+	</table>
+<% end %>	
+<% end %>
+<br>
+<%= link_to "Add new city", {:action => 'new' }%>
