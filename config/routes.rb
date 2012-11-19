@@ -3,6 +3,7 @@ Purerasmus::Application.routes.draw do
   resources :users
   resources :universities
   resources :cities
+  resources :countries
  
 
   # The priority is based upon order of creation:
