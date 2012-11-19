@@ -38,7 +38,7 @@ class UsersController < ApplicationController
      end
   end
 
-  def delete
+  def destroy
       User.find(params[:id]).destroy
       redirect_to :action => 'index'
    end

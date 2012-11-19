@@ -1,11 +1,9 @@
 Purerasmus::Application.routes.draw do
   root :to  => "users#index"
   resources :users
-  
-  #match '/user/all' => 'User#index'
-  #match '/user/index' => 'User#index'
-  #match '/user/new' => 'User#new'
-
+  resources :universities
+  resources :cities
+ 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

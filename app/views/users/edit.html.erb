@@ -1,23 +1,17 @@
 <%= form_for @user do |uForm| %>
 <table>
-	Current name: <% @user.full_name %><br>
-	New name: <br>
 	<tr>
 		<td>First Name:</td>
-		<td><%= uForm.text_field(@user.first_name) :first_name, @user.first_name %></td> <!--funcionara???-->
+		<td><%= uForm.text_field :first_name%></td>
 	</tr>
 	<tr>
 		<td>Last Name:</td>
 		<td><%= uForm.text_field :last_name %></td>
 	</tr>
-
-	Current email: <% @user.email %><br>
-	New email: <br>
 	<tr>
 		<td>Email:</td>
 		<td><%= uForm.email_field :email %></td>
 	</tr>
-
 	<tr>
 		<td>Password:</td>
 		<td><%= uForm.password_field :new_password %></td>
@@ -28,5 +22,5 @@
 	</tr>
 </table>
 <%= uForm.submit "Update" %>
-<%= link_to 'Back', {:action => 'index' } %>
+<%= link_to 'Back', {:action => 'show', :id => @user } %>
 <% end %>

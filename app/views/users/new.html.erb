@@ -21,5 +21,6 @@
 	<td><%= uForm.password_field :new_password_confirmation %></td>
 </tr>
 </table>
-<%= uForm.submit "Create" %>
+<%= uForm.submit "Create" %><br>
+<%= link_to 'Back', {:action => 'index'} %>
 <% end %>

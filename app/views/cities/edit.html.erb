@@ -1,0 +1,14 @@
+<%= form_for @city do |uForm| %>
+<table>
+	<tr>
+		<td>Name:</td>
+		<td><%= uForm.text_field :title %></td>
+	</tr>
+	<tr>
+		<td>Description:</td>
+		<td><%= uForm.text_area :body %></td>
+	</tr>
+</table>
+<%= uForm.submit "Update" %><br>
+<%= link_to 'Back', {:action => 'show', :id => @city } %>
+<% end %>

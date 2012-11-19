@@ -1,0 +1,22 @@
+<%= form_for @university do |uForm| %>
+<table>
+<tr>
+	<td>Name:</td>
+	<td><%= uForm.text_field :name_original %></td>
+</tr>
+<tr>
+	<td>Name (english):</td>
+	<td><%= uForm.text_field :name_english %></td>
+</tr>
+<tr>
+	<td>Website:</td>
+	<td><%= uForm.text_field :website %></td>
+</tr>
+<tr>
+	<td>Contact:</td>
+	<td><%= uForm.text_field :contact %></td>
+</tr>
+</table>
+<%= uForm.submit "Create" %><br>
+<%= link_to 'Back', {:action => 'index' } %>
+<% end %>

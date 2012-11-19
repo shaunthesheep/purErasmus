@@ -1,8 +1,7 @@
-<h1>Name: <%= @user.full_name %></h1>
-<h2>Email: <%= @user.email %></h2>
-<!--<h2>Home university: <%= link_to user.home_university.name_english, user.home_university %></h2>
-<h2>Foreign university: <%= user.foreign_university.name_english, user.foreign_university %></h2>-->
-<%= link_to 'Edit profile', {:action => 'edit', :id => @user.id} %>
-<%= link_to 'Delete profile', {:action => 'delete', :id => @user.id} %>
+<h2>Name: <%= @user.full_name %></h2>
+<h4>Email: <%= @user.email %></h4>
 
+<%= link_to 'Edit profile', {:action => 'edit', :id => @user.id} %><br>
+<%= link_to 'Delete profile', {:action => 'destroy', :id => @user.id},
+:confirm => "Are you sure you want to delete this user?" %><br>
 <%= link_to 'Back', {:action => 'index'} %>

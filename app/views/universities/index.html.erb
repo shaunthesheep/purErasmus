@@ -1,0 +1,24 @@
+<h2>Universities</h2>
+<% if @universities.empty? %>
+<em> No universities found</em>
+<br>
+<% else %> 
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Name (english)</th>
+			<th>Website</th>
+			<th>Contact</th>
+		</tr>
+<% @universities.each do |university| %>
+		<tr>
+			<td><%= link_to university.name_original, university %></td>
+			<td><%= university.name_english %></td>
+			<td><%= university.website %></td>
+			<td><%= university.contact %></td>
+		</tr>
+	</table>
+<% end %>	
+<% end %>
+<br>
+<%= link_to "Add new university", {:action => 'new' }%>
