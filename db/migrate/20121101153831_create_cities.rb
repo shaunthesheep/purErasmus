@@ -1,8 +1,8 @@
 class CreateCities < ActiveRecord::Migration
   def change
     create_table :cities do |t|
-    	t.string :title
-    	t.text :body
+      t.string :name
+      t.text :description
 
       t.integer :country_id
 
