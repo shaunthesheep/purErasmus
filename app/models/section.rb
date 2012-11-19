@@ -1,7 +1,7 @@
 class Section < ActiveRecord::Base
 	# Attributes
 	#-----------
- 	attr_accessible :description, :title
+ 	attr_accessible :title, :description
 
  	# Associations
  	#-------------
