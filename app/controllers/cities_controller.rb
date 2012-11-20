@@ -18,6 +18,7 @@ class CitiesController < ApplicationController
 
   def new
     @city = City.new
+    @countries = Country.all.map { |country| [country.name, country.id] }
   end
 
   def create
