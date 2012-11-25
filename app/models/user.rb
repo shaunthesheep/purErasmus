@@ -3,7 +3,7 @@ require "bcrypt"
 class User < ActiveRecord::Base
     # Attributes
     #-----------
-    attr_accessible :email, :first_name, :last_name, :new_password, :new_password_confirmation
+    attr_accessible :email, :first_name, :last_name, :new_password, :new_password_confirmation, :home_university_id, :foreign_university_id
     attr_accessor :new_password, :new_password_confirmation
 
     # Associations

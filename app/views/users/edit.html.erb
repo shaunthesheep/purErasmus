@@ -1,2 +1,34 @@
-<h1>User#edit</h1>
-<p>Find me in app/views/user/edit.html.erb</p>
+<%= form_for @user do |uForm| %>
+<table>
+	<tr>
+		<td>First Name:</td>
+		<td><%= uForm.text_field :first_name%></td>
+	</tr>
+	<tr>
+		<td>Last Name:</td>
+		<td><%= uForm.text_field :last_name %></td>
+	</tr>
+	<tr>
+		<td>Email:</td>
+		<td><%= uForm.email_field :email %></td>
+	</tr>
+	<tr>
+		<td>Home university:</td>
+		<td><%= uForm.select :university_id, @universities %></td> 
+	</tr>
+	<tr>
+		<td>Foreign university:</td>
+		<td><%= uForm.select :university_id, @universities %></td> 
+	</tr>
+	<tr>
+		<td>Password:</td>
+		<td><%= uForm.password_field :new_password %></td>
+	</tr>
+	<tr>
+		<td>Password (again):</td>
+		<td><%= uForm.password_field :new_password_confirmation %></td>
+	</tr>
+</table>
+<%= uForm.submit "Update" %><br>
+<%= link_to 'Back', {:action => 'show', :id => @user } %>
+<% end %>

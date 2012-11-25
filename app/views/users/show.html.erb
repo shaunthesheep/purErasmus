@@ -1,2 +1,11 @@
-<h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
+<h2>Name: <%= @user.full_name %></h2>
+<h4>Email: <%= @user.email %></h4>
+<h4>Home university: <%= link_to @user.home_university.name_original, @user.home_university %> in <%= link_to @user.home_university.city.name, @user.home_university.city %> (<%= link_to @user.home_university.city.country.name, @user.home_university.city.country %>)</h4>
+<h4>Foreign university: <%= link_to @user.foreign_university.name_original, @user.foreign_university %> in <%= link_to @user.foreign_university.city.name, @user.foreign_university.city %> (<%= link_to @user.foreign_university.city.country.name, @user.foreign_university.city.country %>)</h4>
+
+<%= link_to 'Edit profile', {:action => 'edit', :id => @user.id} %><br>
+<%= link_to "Delete", 
+	@user, 
+	:method => :delete,
+	:confirm => "Are you sure you want to delete this user?" %><br>
+<%= link_to 'Back', {:action => 'index'} %>

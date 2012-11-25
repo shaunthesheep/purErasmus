@@ -1,0 +1,19 @@
+<%= form_for @city do |uForm| %>
+<table>
+<tr>
+	<td>Name:</td>
+	<td><%= uForm.text_field :name %></td>
+</tr>
+<tr>
+	<td>Country:</td>
+	<td><%= uForm.select :country_id, @countries %></td> 
+</tr>
+<tr>
+	<td>Description:</td>
+	<td><%= uForm.text_area :description %></td>
+</tr>
+</table>
+
+<%= uForm.submit "Create" %><br>
+<%= link_to 'Back', {:action => 'index' } %>
+<% end %>
