@@ -1,0 +1,38 @@
+<% # This view displays an authentication form. %>
+<h1>Login</h1>
+
+<hr />
+
+<p class="text-info">You need to be authenticated in order to ask questions and publish content on this website.</p>
+
+<hr />
+
+<%= form_tag login_path, :class => "form-horizontal" do %>
+
+    <div class="control-group">
+        <%= label_tag :email, "Email", :class => "control-label" %>
+        <div class="controls">
+            <%= email_field_tag "email", nil, :placeholder => "Email" %>
+        </div>
+    </div>
+    <div class="control-group">
+        <%= label_tag :password, "Password", :class => "control-label" %>
+        <div class="controls">
+            <%= password_field_tag "password", nil, :placeholder => "Password" %>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <label class="checkbox">
+                <%= check_box_tag :remember_me %>
+                Remember me
+            </label>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <%= submit_tag "Sign In", :class => "btn btn-primary" %>
+        <%= link_to "I don't have an account", new_user_path, :class => :btn %>
+    </div>
+
+<% end %>
