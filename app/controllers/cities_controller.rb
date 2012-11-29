@@ -10,6 +10,7 @@ class CitiesController < ApplicationController
 
   def edit
   	@city = City.find(params[:id])
+    @countries = Country.all.map { |country| [country.name, country.id] }
 #  	if session[:id] != @user.id
 #  		flash[:notice] = "Sorry, you can't edit this user"
 #  		redirect_to :action => 'index'
@@ -18,6 +19,7 @@ class CitiesController < ApplicationController
 
   def new
     @city = City.new
+    @countries = Country.all.map { |country| [country.name, country.id] }
   end
 
   def create

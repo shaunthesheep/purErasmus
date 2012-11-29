@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def edit
   	@user = User.find(params[:id])
+    @universities = University.all.map { |university| [university.name_original, university.id] }
 #  	if session[:id] != @user.id
 #  		flash[:notice] = "Sorry, you can't edit this user"
 #  		redirect_to :action => 'index'
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @universities = University.all.map { |university| [university.name_original, university.id] }
   end
 
   def create

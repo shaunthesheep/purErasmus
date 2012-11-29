@@ -5,6 +5,10 @@
 		<td><%= uForm.text_field :name %></td>
 	</tr>
 	<tr>
+		<td>Country:</td>
+		<td><%= uForm.select :country_id, @countries %></td> 
+	</tr>
+	<tr>
 		<td>Description:</td>
 		<td><%= uForm.text_area :description %></td>
 	</tr>
