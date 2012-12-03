@@ -6,13 +6,15 @@
 	<table>
 		<tr>
 			<th>Name</th>
+			<th>Country</th>
 		</tr>
 <% @cities.each do |city| %>
 		<tr>
 			<td><%= link_to city.name, city %></td>
+			<td><%= link_to city.country.name, city.country %></td>
 		</tr>
-	</table>
 <% end %>	
+	</table>
 <% end %>
 <br>
 <%= link_to "Add new city", {:action => 'new' }%>

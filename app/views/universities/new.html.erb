@@ -16,6 +16,10 @@
 	<td>Contact:</td>
 	<td><%= uForm.text_field :contact %></td>
 </tr>
+<tr>
+	<td>City:</td>
+	<td><%= uForm.select :city_id, @cities %></td> 
+</tr>
 </table>
 <%= uForm.submit "Create" %><br>
 <%= link_to 'Back', {:action => 'index' } %>

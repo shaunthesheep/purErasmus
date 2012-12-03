@@ -9,6 +9,7 @@
 			<th>Name (english)</th>
 			<th>Website</th>
 			<th>Contact</th>
+			<th>City (Country)</th>
 		</tr>
 <% @universities.each do |university| %>
 		<tr>
@@ -16,9 +17,10 @@
 			<td><%= university.name_english %></td>
 			<td><%= university.website %></td>
 			<td><%= university.contact %></td>
+			<td><%= link_to university.city.name, university.city %> (<%= link_to university.city.country.name, university.city.country %>)</td>
 		</tr>
-	</table>
-<% end %>	
+<% end %>
+	</table>	
 <% end %>
 <br>
 <%= link_to "Add new university", {:action => 'new' }%>

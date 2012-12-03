@@ -1,7 +1,7 @@
 class University < ActiveRecord::Base
 	# Attributes
 	#-----------
-	attr_accessible :contact, :name_english, :name_original, :website
+	attr_accessible :contact, :name_english, :name_original, :website, :city_id
 
 	# Associations
 	#-------------
