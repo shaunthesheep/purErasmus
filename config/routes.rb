@@ -1,4 +1,6 @@
 Purerasmus::Application.routes.draw do
+  get "home/index"
+
     # Home route.
     root :to  => "home#index"
 
