@@ -1,8 +1,9 @@
 <h2>Name: <%= @user.full_name %></h2>
 <h4>Email: <%= @user.email %></h4>
+<% if false %>
 <h4>Home university: <%= link_to @user.home_university.name_original, @user.home_university %> in <%= link_to @user.home_university.city.name, @user.home_university.city %> (<%= link_to @user.home_university.city.country.name, @user.home_university.city.country %>)</h4>
 <h4>Foreign university: <%= link_to @user.foreign_university.name_original, @user.foreign_university %> in <%= link_to @user.foreign_university.city.name, @user.foreign_university.city %> (<%= link_to @user.foreign_university.city.country.name, @user.foreign_university.city.country %>)</h4>
-
+<% end %>
 <%= link_to 'Edit profile', {:action => 'edit', :id => @user.id} %><br>
 <<<<<<< HEAD
 <%= link_to 'Delete profile', {:action => 'destroy', :id => @user.id},
