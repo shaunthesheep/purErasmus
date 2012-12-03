@@ -1,6 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
 	# Make sure we are on the right page.
 	if $("#new_user").length == 0
@@ -27,32 +24,68 @@ $ ->
 	check_is_exchange.trigger "change"
 
 	# ----
-	# Add the logic for the "Universities" dropdown.
+	# Add the logic for the "Universities" and "Cities" dropdown.
 	# ----
 
 	# Retrieve the dom elements.
 	country_dropdowns = $(".country-dropdown")
+	city_dropdowns = $(".city-dropdown")
 
-	# Add an event for a selection change on those dropdowns.
+	# Add an event for a selection change on the University dropdowns.
 	country_dropdowns.change ->
 		$this = $(this)
 
 		# Get the selected country Id.
 		country_id = $this.val()
 
-		# Retrieve a reference to the corresponding university dropdown.
+		# Retrieve a reference to the corresponding city dropdown.
+		city_dropdown = $this.parents(".country-university-group").find(".city-dropdown")
 		university_dropdown = $this.parents(".country-university-group").find(".university-dropdown")
 
-		# Make a request to retrieve the universities for the selected country.
-		$.ajax
-			url: "/countries/" + country_id + "/universities"
-			type: "GET"
-			dataType: "json"
-			success: (data) =>
-				# Clear all the elements in the University Dropdown.
-				university_dropdown.empty()
+		# Update the city dropdown.
+		update_dropdown("/countries/#{country_id}/cities", city_dropdown)
 
-				# Add the retrieved elements.
-				$.each(data, ->
-					university_dropdown.append($("<option></option>").attr("value", this.id).text(this.name))
-				)
+		# Also reset the corresponding university dropdown.
+		reset_dropdown(university_dropdown)
+
+	# Add an event for a selection change on the City dropdowns.
+	city_dropdowns.change ->
+		$this = $(this)
+
+		# Get the selected city Id.
+		city_id = $this.val()
+
+		# Retrieve a reference to the corresponding university dropdown.
+		university_dropdown = $this.parents(".country-university-group").find(".university-dropdown")
+	
+		# Update the university dropdown.
+		update_dropdown("/countries/#{city_id}/universities", university_dropdown)
+
+# ----
+# Common methods.
+# ----
+
+# Method to update a Dropdown by retrieving a list of values.
+update_dropdown = (url, dropdown_to_update) ->
+	# Make a request to retrieve the universities for the selected country.
+	$.ajax
+		url: url
+		type: "GET"
+		dataType: "json"
+		success: (data) =>
+			# Reset the DropDown.
+			reset_dropdown(dropdown_to_update)
+
+			# Add the retrieved elements.
+			$.each(data, ->
+				dropdown_to_update.append(create_select_option(this.id, this.name))
+			)
+
+# Empty a Dropdown and add the "Other" value.
+reset_dropdown = (dropdown_to_reset) ->
+	dropdown_to_reset.empty()
+	dropdown_to_reset.append(create_select_option(-1, "Other"))
+
+# Method to create the Select Option from a value and a text.
+create_select_option = (value, text) ->
+	$("<option></option>").attr("value", value).text(text)

@@ -24,10 +24,25 @@
                         <li><a href="#">Universities</a></li>
                     </ul>
 
-                    <ul class="nav pull-right">                       
-                        <li<%= raw ' class="active"' if @tab == :login %>>
-                            <%= link_to "Login", login_path %>
-                        </li>
+                    <ul class="nav pull-right"> 
+                        <% if @site_user %>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <%= @site_user.full_name %>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="#">My Account</a></li>
+                                    <li class="divider"></li>
+                                    <li><a tabindex="-1" href="#">My city</a></li>
+                                    <li><a tabindex="-1" href="#">My university</a></li>
+                                </ul>
+                            </li>
+                        <% else %>                
+                            <li<%= raw ' class="active"' if @tab == :login %>>
+                                <%= link_to "Login", login_path %>
+                            </li>
+                        <% end %>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
