@@ -1,0 +1,11 @@
+<%= form_for @country do |uForm| %>
+<table>
+<tr>
+	<td>Name:</td>
+	<td><%= uForm.text_field :name %></td>
+</tr>
+</table>
+
+<%= uForm.submit "Create" %><br>
+<%= link_to 'Back', {:action => 'index' } %>
+<% end %>
