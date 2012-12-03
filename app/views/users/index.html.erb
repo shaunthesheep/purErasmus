@@ -15,8 +15,10 @@
 			<tr>
 				<td><%= link_to user.full_name, user %></td>
 				<td><%= user.email %></td>
+				<% if false %>
 				<td><%= link_to user.home_university.name_original, user.home_university %></td>
 				<td><%= link_to user.foreign_university.name_original, user.foreign_university %></td>
+				<% end %>	
 			</tr>
 		<% end %>
 	</table>
