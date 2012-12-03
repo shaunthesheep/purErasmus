@@ -1,0 +1,18 @@
+<h2>Countries</h2>
+<% if @countries.empty? %>
+<em> No countries found</em>
+<br>
+<% else %> 
+	<table>
+		<tr>
+			<th>Name</th>
+		</tr>
+<% @countries.each do |country| %>
+		<tr>
+			<td><%= link_to country.name, country %></td>
+		</tr>
+<% end %>
+	</table>	
+<% end %>
+<br>
+<%= link_to "Add new country", {:action => 'new' }%>
