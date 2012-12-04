@@ -32,10 +32,11 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="#">My Account</a></li>
-                                    <li class="divider"></li>
                                     <li><a tabindex="-1" href="#">My city</a></li>
                                     <li><a tabindex="-1" href="#">My university</a></li>
+                                    <li class="divider"></li>
+                                    <li><%= link_to "My account", edit_user_path(@site_user) %></li>
+                                    <li><%= link_to "Logout", logout_path %></li>
                                 </ul>
                             </li>
                         <% else %>                
