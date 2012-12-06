@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 		user = User.authenticate(params[:email], params[:password])
 		if user
 			# If the authentication was successful, set the session value.
-			session[:user_id] = user.user_id
+			session[:user_id] = user.id
 
 			# TODO: Take the "Remember Me" field into account.
 

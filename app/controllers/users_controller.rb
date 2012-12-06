@@ -44,9 +44,9 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update_attributes(params[:user])
-            redirect_to :action => 'show', :id => @user
+            redirect_to @user
         else
-            render :action => 'edit'
+            render "edit"
         end
     end
 
@@ -54,6 +54,6 @@ class UsersController < ApplicationController
     # Action method to delete a specific user.
     def destroy
         User.find(params[:id]).destroy
-        redirect_to :action => 'index'
+        redirect_to users_path
     end
 end

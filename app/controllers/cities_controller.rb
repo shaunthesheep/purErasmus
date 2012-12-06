@@ -1,47 +1,59 @@
 class CitiesController < ApplicationController
 
-  def index
-    @cities = City.all
-  end
+    # GET /cities
+    # GET /countries/:country_id/cities
+    # Action method to retrieve a list of cities. Can be returned in multiple formats.
+    def index
+        country_id = params[:country_id]
 
-  def show
-  	@city = City.find(params[:id]) 
-  end
+        # If we have countryId, return only the cities for the specified country.
+        if (country_id)
+            @cities = Country.find(country_id).cities
+        # Otherwise, return all the cities.
+        else
+            @cities = City.all            
+        end
 
-  def edit
-  	@city = City.find(params[:id])
-    @countries = Country.all.map { |country| [country.name, country.id] }
-#  	if session[:id] != @user.id
-#  		flash[:notice] = "Sorry, you can't edit this user"
-#  		redirect_to :action => 'index'
-#  	end
-  end
-
-  def new
-    @city = City.new
-    @countries = Country.all.map { |country| [country.name, country.id] }
-  end
-
-  def create
-    @city = City.new(params[:city])
-    if @city.save
-      redirect_to :action => "index"
-    else 
-      render :action => "new"
+        # Decide on the return format.
+        respond_to do |format|
+            format.json { render :json  => @cities }
+        end
     end
-  end
 
-  def update
-     @city = City.find(params[:id])
-     if @city.update_attributes(params[:city])
-        redirect_to :action => 'show', :id => @city
-     else
-        render :action => 'edit'
-     end
-  end
+    def show
+        @city = City.find(params[:id]) 
+    end
 
-  def destroy
-      City.find(params[:id]).destroy
-      redirect_to :action => 'index'
-   end
+    def edit
+        @city = City.find(params[:id])
+        @countries = Country.all.map { |country| [country.name, country.id] }
+    end
+
+    def new
+        @city = City.new
+        @countries = Country.all.map { |country| [country.name, country.id] }
+    end
+
+    def create
+        @city = City.new(params[:city])
+        if @city.save
+            redirect_to cities_path
+        else 
+            render "new"
+        end
+    end
+
+    def update
+        @city = City.find(params[:id])
+        if @city.update_attributes(params[:city])
+            redirect_to @city
+        else
+            render "edit"
+        end
+    end
+
+    def destroy
+        City.find(params[:id]).destroy
+        redirect_to cities_path
+    end
 end

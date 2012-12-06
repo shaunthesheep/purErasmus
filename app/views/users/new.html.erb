@@ -74,11 +74,19 @@
 		        </div>
 		    </div>
 
+		    <!-- Home city -->
+		    <div class="control-group">
+		        <%= u.label :home_city_id, "Home city", :class => "control-label" %>
+		        <div class="controls">
+		            <%= select_tag :home_city_id, options_for_select([["First, select a country", -1]]), :class => "city-dropdown" %>
+		        </div>
+		    </div>
+
 		    <!-- Home university -->
 		    <div class="control-group">
 		        <%= u.label :home_university_id, "Home university", :class => "control-label" %>
 		        <div class="controls">
-		            <%= u.select :home_university_id, [["Select a country first", -1]], {}, :class => "university-dropdown" %>
+		            <%= u.select :home_university_id, [["First, select a city", -1]], {}, :class => "university-dropdown" %>
 		        </div>
 		    </div>
 
@@ -96,11 +104,19 @@
 
 	    <div id="exchange_student_location" class="country-university-group">
 
-		    <!-- Exchange country -->
+		    <!-- Home country -->
 		    <div class="control-group">
-		        <%= u.label :foreign_country_id, "Exchange country", :class => "control-label" %>
+		        <%= u.label :foreign_country_id, "Home country", :class => "control-label" %>
 		        <div class="controls">
 		            <%= select_tag :foreign_country_id, options_for_select([["Select one", -1]].concat(@countries)), :class => "country-dropdown" %>
+		        </div>
+		    </div>
+
+		    <!-- Home city -->
+		    <div class="control-group">
+		        <%= u.label :foreign_city_id, "Home city", :class => "control-label" %>
+		        <div class="controls">
+		            <%= select_tag :foreign_city_id, options_for_select([["First, select a country", -1]]), :class => "city-dropdown" %>
 		        </div>
 		    </div>
 
