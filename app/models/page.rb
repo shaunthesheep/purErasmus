@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
 	# Attributes
 	#-----------
-	attr_accessible :title, :body
+	attr_accessible :title, :body, :university_id
 
  	# Associations
  	#-------------
