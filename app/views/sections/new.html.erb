@@ -1,0 +1,15 @@
+<%= form_for @section do |uForm| %>
+<table>
+<tr>
+	<td>Title:</td>
+	<td><%= uForm.text_field :title %></td>
+</tr>
+<tr>
+	<td>Description:</td>
+	<td><%= uForm.text_area :description %></td>
+</tr>
+</table>
+
+<%= uForm.submit "Create" %><br>
+<%= link_to 'Back', {:action => 'index' } %>
+<% end %>

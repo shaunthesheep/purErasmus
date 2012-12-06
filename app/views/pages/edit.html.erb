@@ -1,0 +1,14 @@
+<%= form_for @page do |uForm| %>
+<table>
+	<tr>
+		<td>Title:</td>
+		<td><%= uForm.text_field :title %></td>
+	</tr>
+	<tr>
+		<td>Body:</td>
+		<td><%= uForm.text_area :body %></td>
+	</tr>
+</table>
+<%= uForm.submit "Update" %><br>
+<%= link_to 'Back', {:action => 'show', :id => @page } %>
+<% end %>

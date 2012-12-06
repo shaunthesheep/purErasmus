@@ -1,0 +1,22 @@
+<h2>Sections</h2>
+<% if @sections.empty? %>
+<em> No sections found</em>
+<br>
+<% else %> 
+	<table class="table table-striped">
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th></th>
+		</tr>
+<% @sections.each do |section| %>
+		<tr>
+			<td><%= section.title %></td>
+			<td><%= section.description %></td>
+			<td><%= link_to "Delete", section, :method => :delete, :confirm => "Are you sure you want to delete this section?" %></td>
+		</tr>
+<% end %>	
+	</table>
+<% end %>
+<br>
+<%= link_to "Add new section", {:action => 'new' }%>

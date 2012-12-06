@@ -15,13 +15,14 @@ class UniversitiesController < ApplicationController
         end
 
         # Decide on the return format.
-        respond_to do |format|
-            format.json { render :json => @universities }
-        end
+        #respond_to do |format|
+        #    format.json { render :json => @universities }
+        #end
     end
 
     def show
         @university = University.find(params[:id]) 
+        @pages = Page.all
     end
 
     def edit
