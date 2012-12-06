@@ -19,22 +19,42 @@
                 <a class="brand" href="/">Purerasmus</a>
 
                 <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li><a href="#">Countries</a></li>
-                        <li><a href="#">Universities</a></li>
+                    <ul class="nav">                        
+                        <% if @site_user %>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    My cities
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    My universities
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    
+                                </ul>
+                            </li>
+                        <% end %>
                     </ul>
+
+                    <form class="navbar-search pull-left">
+                        <input type="text" class="search-query" placeholder="Find a City or a University">
+                    </form>
 
                     <ul class="nav pull-right"> 
                         <% if @site_user %>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <%= image_tag @site_user.gravatar_url, :class => "avatar" %>
                                     <%= @site_user.full_name %>
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="#">My city</a></li>
-                                    <li><a tabindex="-1" href="#">My university</a></li>
-                                    <li class="divider"></li>
                                     <li><%= link_to "My account", edit_user_path(@site_user) %></li>
                                     <li><%= link_to "Logout", logout_path %></li>
                                 </ul>

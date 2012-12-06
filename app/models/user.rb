@@ -1,6 +1,9 @@
 require "bcrypt"
 
 class User < ActiveRecord::Base
+    include Gravtastic
+    gravtastic
+
     # Attributes
     #-----------
     attr_accessible :email, :first_name, :last_name, :new_password, :new_password_confirmation, :home_university_id, :foreign_university_id
