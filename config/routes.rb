@@ -15,14 +15,6 @@ Purerasmus::Application.routes.draw do
     resources :sections
 
 
-    resources :universities do
-        # This is used to display the topics in a specific university.
-        resources :topics do
-            # This is used to display the comments in a specific topic.
-            resources :comments
-        end
-    end
-
     resources :cities do
         # This is used to display the topics in a specific city.
         resources :topics do

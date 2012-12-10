@@ -65,8 +65,10 @@ ActiveRecord::Schema.define(:version => 20121107164439) do
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "city_id"
+    t.integer  "university_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "universities", :force => true do |t|
