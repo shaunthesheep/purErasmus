@@ -7,6 +7,7 @@
 <% @country.cities.each do |city| %>
 		<tr>
 			<td><%= link_to city.name, city %></td>
+			<td><%= link_to "forum", city_topics_url(city.id) %></td>
 		</tr>
 <% end %>	
 	</table>
