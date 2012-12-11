@@ -1,4 +1,12 @@
 Purerasmus::Application.routes.draw do
+  get "topics/edit"
+
+  get "topics/new"
+
+  get "topics/index"
+
+  get "topics/show"
+
   get "home/index"
 
     # Home route.
@@ -14,7 +22,7 @@ Purerasmus::Application.routes.draw do
     resources :pages
     resources :sections
     resources :universities
-    resources :topics
+    #resources :topics
 
     resources :cities do
         # This is used to display the topics in a specific city.

@@ -1,13 +1,15 @@
-<% form_for @topic do |uForm| %>
+<%= form_for @topic do |t| %>
 <table>
 <tr>
 	<td>Title:</td>
-	<td><%= uForm.text_field :title %></td>
+	<td><%= t.text_field :title %></td>
 </tr>
 <tr>
 	<td>Description:</td>
-	<td><%= uForm.text_area :description %></td>
+	<td><%= t.text_area :description %></td>
 </tr>
 </table>
 
+<%= t.submit "Create"  %><br>
+<%= link_to 'Back', {:action => 'index' } %>
 <% end %>
