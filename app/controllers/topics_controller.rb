@@ -13,8 +13,28 @@ class TopicsController < ApplicationController
 	end
 	
 	def new
-        @topic = Topic.new
+       @topic = Topic.new
 	end
+
+    def create
+        @topic = Topic.new(params[:topic])
+        if @topic.save
+            render :action => "index"
+            #redirect_to root_url
+        else
+            render :action => "new"
+        end
+    end
+
+    def show
+        @topic = Topic.find(params[:id])
+    end
+
+    def edit
+        @topic = Topics.find(params[:id])
+    end
+    def destroy
+    end
 
 
 end
