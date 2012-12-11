@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-<% form_for @topic do |uForm| %>
-
-=======
 <%= form_for @topic do |t| %>
->>>>>>> 8c6b43d66bc280e3d5797d98bd000705a2df8685
+
 <table>
 <tr>
 	<td>Title:</td>
@@ -15,10 +11,7 @@
 </tr>
 </table>
 
-<<<<<<< HEAD
-<%= uForm.submit "Create" %><br>
-=======
 <%= t.submit "Create"  %><br>
->>>>>>> 8c6b43d66bc280e3d5797d98bd000705a2df8685
+
 <%= link_to 'Back', {:action => 'index' } %>
 <% end %>
