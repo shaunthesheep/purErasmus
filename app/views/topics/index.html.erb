@@ -1,0 +1,18 @@
+<div>
+	
+</div>
+<div>
+	<table>
+	<% if @topics.empty? %>
+		No topics found
+	<% else @topics.each |topic| %>
+	<tr>
+		<td><%= topic.title %></td>
+		<td><%= topic.description %></td>
+	</tr>
+	<% end %>
+	<tr>
+		<%= link_to "Add new topic", new_topic_path %>
+	</tr>
+	</table>
+</div>

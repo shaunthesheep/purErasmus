@@ -1,0 +1,13 @@
+<% form_for @topic do |uForm| %>
+<table>
+<tr>
+	<td>Title:</td>
+	<td><%= uForm.text_field :title %></td>
+</tr>
+<tr>
+	<td>Description:</td>
+	<td><%= uForm.text_area :description %></td>
+</tr>
+</table>
+
+<% end %>
