@@ -13,7 +13,8 @@ Purerasmus::Application.routes.draw do
     resources :users
     resources :pages
     resources :sections
-
+    resources :universities
+    resources :topics
 
     resources :cities do
         # This is used to display the topics in a specific city.
