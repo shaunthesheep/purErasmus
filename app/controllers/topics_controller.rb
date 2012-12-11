@@ -22,7 +22,7 @@ class TopicsController < ApplicationController
         @topic = Topic.new(params[:topic])
         @topic.city = City.find(params[:city_id])
         if @topic.save
-            redirect_to root_url
+            redirect_to city_topics_url(params[:city_id]) 
         else
             render :action => "new"
         end
