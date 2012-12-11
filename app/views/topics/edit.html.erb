@@ -1,0 +1,14 @@
+<%= form_for @topic do |t| %>
+<table>
+	<tr>
+		<td>Title:</td>
+		<td><%= t.text_field :title%></td>
+	</tr>
+	<tr>
+		<td>Description:</td>
+		<td><%= t.text_area :description %></td>
+	</tr>
+</table>
+<%= uForm.submit "Update" %><br>
+<%= link_to 'Back', {:action => 'show', :id => @topic } %>
+<% end %>

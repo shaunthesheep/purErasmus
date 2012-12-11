@@ -1,20 +1,4 @@
 Purerasmus::Application.routes.draw do
-<<<<<<< HEAD
-  get "forum/show"
-
-  get "forum/index"
-=======
-  get "topics/edit"
-
-  get "topics/new"
-
-  get "topics/index"
-
-  get "topics/show"
->>>>>>> 8c6b43d66bc280e3d5797d98bd000705a2df8685
-
-  get "home/index"
-
     # Home route.
     root :to  => "home#index"
 
@@ -28,12 +12,9 @@ Purerasmus::Application.routes.draw do
     resources :pages
     resources :sections
     resources :universities
-<<<<<<< HEAD
     #resources :topics
     resources :forum
-=======
-    #resources :topics
->>>>>>> 8c6b43d66bc280e3d5797d98bd000705a2df8685
+
 
     resources :cities do
         # This is used to display the topics in a specific city.
