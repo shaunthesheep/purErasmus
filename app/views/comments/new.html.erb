@@ -1,0 +1,11 @@
+<%= form_for ([@topic, @comment]) do |uForm| %>
+
+<table>
+<tr>
+	<td>Description:</td>
+	<td><%= uForm.text_area :description %></td>
+</tr>
+</table>
+<%= uForm.submit "Submit" %><br>
+<%= link_to 'Cancel', @topic %>
+<% end %>

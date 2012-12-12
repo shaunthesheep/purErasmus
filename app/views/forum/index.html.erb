@@ -6,12 +6,25 @@
 	<% else %> 
 		<table class="table table-striped">
 			<tr>
-				<th>Name</th>
+				<th>Countries with cities</th>
 			</tr>
 			<% @countries.each do |country| %>
+				<% if !country.cities.empty? %>
+					<tr>
+						<td><%= link_to country.name, {:action => 'show', :id => country} %></td>
+					</tr>
+				<% end %>
+			<% end %>
+
 			<tr>
-				<td><%= link_to country.name, {:action => 'show', :id => country} %></td>
+				<th>Countries without cities</th>
 			</tr>
-	<% end %>
+			<% @countries.each do |country| %>
+				<% if country.cities.empty? %>
+					<tr>
+						<td><%= link_to country.name, {:action => 'show', :id => country} %></td>
+					</tr>
+				<% end %>
+			<% end %>
 		</table>	
-<% end %>
+	<% end %>

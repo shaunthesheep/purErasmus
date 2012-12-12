@@ -1,2 +1,35 @@
-<h1>Topics#show</h1>
-<p>Find me in app/views/topics/show.html.erb</p>
+<h2><%= @topic.title %></h2>
+<p><%= @topic.description %></p>
+
+<br>
+<% if @topic.comments.empty? %>
+	<em> This topic is empty</em>
+	<br>
+<% else %> 
+	<table>
+	<% @topic.comments.each do |comment| %>
+			<tr>
+				<td>
+					<a id="comment<%= comment.id %>"></a>
+					<%= comment.description %>
+				</td>
+			</tr>
+	<% end %>	
+	</table>
+<% end %>
+
+<br>
+<% if @user %>
+	<%= form_for  ([@city, @topic, @comment]) do |uForm| %>
+	<table>
+	<tr>
+		<td>Description:</td>
+		<td><%= uForm.text_area :description %></td>
+	</tr>
+	</table>
+	<%= uForm.submit "Submit", {:class => "btn btn-primary"} %><br>
+	<% end %>
+<% end %>
+
+<%= link_to 'Linkktorytestujemy', city_topic_url(@city, @topic)%>
+<%= link_to 'back', {:action => 'index'} %>

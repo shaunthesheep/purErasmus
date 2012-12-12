@@ -1,9 +1,21 @@
-
 <h2><%= @country.name %></h2>
 <% if @country.cities.empty? %>
 <em> No cities</em>
 <br>
 <% else %> 
+	<table>
+
+	<% @country.cities.each do |city| %>
+			<tr>
+				<% if !city.topics.empty? %>
+					<td><%= link_to city.name, city_topics_url(city.id) %></td>
+				<% end %>
+			</tr>
+	<% end %>	
+	</table>
+
+<em> Cities with no topics...</em>
+
 	<table>
 	<% @country.cities.each do |city| %>
 			<tr>
@@ -11,8 +23,13 @@
 					<td><%= link_to city.name, city_topics_url(city.id) %></td>
 				<% end %>
 			</tr>
-	<% end %>	
+	<% end %>
+
 	</table>
 <% end %>
 <br>
+<% if @user %>
+	<%= link_to 'Add new city' , new_city_path %>
+	<br>
+<% end %>
 <%= link_to 'back', {:action => 'index'} %>

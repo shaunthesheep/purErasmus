@@ -8,7 +8,7 @@
 	<% else %>
 		<% @topics.each do |topic| %>
 		<tr>
-			<td><%= topic.title %></td>
+			<td><%= link_to topic.title , {:action => 'show', :id => topic} %></td>
 			<td><%= topic.description %></td>
 		</tr>
 		<% end %>
@@ -16,7 +16,9 @@
 	</table>
 </div>
 <div>
-	<%= link_to "Add new topic", new_city_topic_path(@city.id) %>
+	<% if @user %>
+		<%= link_to "Add new topic", new_city_topic_path(@city.id) %>
+	<% end %>
 </div>
 <div>
 	<%= link_to "back" , forum_path(@city.country) %>
