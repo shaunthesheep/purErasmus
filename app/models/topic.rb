@@ -6,5 +6,7 @@ class Topic < ActiveRecord::Base
 	# Associations
 	#-------------
 	belongs_to :user
+	belongs_to :city
+	belongs_to :university
 	has_many :comments
 end
