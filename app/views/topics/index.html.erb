@@ -1,15 +1,23 @@
 <div>
 	<table>
-	<% if @topics.empty? %>
-		No topics found
-	<% else @topics.each |topic| %>
+	<tr><td> <%= @city.name %></td></tr>
+	<% if @city.topics.empty? %>
+	<tr>
+		<td>No topics found</td>
+	</tr>
+	<% else %>
+	<% @topics.each do |topic| %>
 	<tr>
 		<td><%= topic.title %></td>
 		<td><%= topic.description %></td>
 	</tr>
+	<%end%>
 	<% end %>
 	<tr>
-		<%= link_to "Add new topic", new_city_topic_path %>
+		<%= link_to "Add new topic", new_city_topic_path(@city.id) %>
 	</tr>
 	</table>
+</div>
+<div>
+	<%= link_to "back" , forum_path(@city.country) %>
 </div>

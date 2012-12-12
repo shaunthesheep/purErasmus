@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
         # If we have cityId, return only the topics for the specified city.
         if (forum_id)
             @topics = City.find(forum_id).topics
+            @city = City.find(forum_id)
         # Otherwise, return all the topics.
         else
             @topics = Topics.all            
@@ -14,13 +15,14 @@ class TopicsController < ApplicationController
 	
 	def new
        @topic = Topic.new
-	end
+       @city = City.find(params[:city_id])
+ 	end
 
     def create
         @topic = Topic.new(params[:topic])
+        @topic.city = City.find(params[:city_id])
         if @topic.save
-            render :action => "index"
-            #redirect_to root_url
+            redirect_to root_url
         else
             render :action => "new"
         end

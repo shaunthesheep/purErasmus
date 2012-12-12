@@ -10,8 +10,7 @@
 	<td><%= t.text_area :description %></td>
 </tr>
 </table>
-
-<%= t.submit "Create"  %><br>
+<%= t.submit "Create", {:city_id => @city.id}  %><br>
 
 <%= link_to 'Back', {:action => 'index' } %>
 <% end %>
