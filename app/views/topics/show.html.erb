@@ -1,5 +1,13 @@
+<ul class="breadcrumb">
+    <li><%= link_to "Main forum" , forums_path %> <span class="divider">/</span></li>
+    <li><%= link_to @city.country.name , forum_path(@city.country) %> <span class="divider">/</span></li>
+    <li><%= link_to @city.name , {:action => 'index'} %> <span class="divider">/</span></li>
+    <li class="active"><%= @topic.title %></h2></li>
+</ul>
+
 <h2><%= @topic.title %></h2>
 <p><%= @topic.description %></p>
+<p><%= @topic.user.full_name %></p>
 
 <br>
 <% if @topic.comments.empty? %>
@@ -12,6 +20,8 @@
 				<td>
 					<a id="comment<%= comment.id %>"></a>
 					<%= comment.description %>
+					<%= comment.user.full_name %>
+					<%= comment.created_at %>
 				</td>
 			</tr>
 	<% end %>	
@@ -31,5 +41,4 @@
 	<% end %>
 <% end %>
 
-<%= link_to 'Linkktorytestujemy', city_topic_url(@city, @topic)%>
 <%= link_to 'back', {:action => 'index'} %>

@@ -21,6 +21,7 @@ class TopicsController < ApplicationController
     def create
         @topic = Topic.new(params[:topic])
         @topic.city = City.find(params[:city_id])
+        @topic.user = retrieve_authenticated_user
         if @topic.save
             redirect_to city_topics_url(params[:city_id]) 
         else

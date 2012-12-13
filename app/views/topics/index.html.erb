@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+    <li><%= link_to "Main forum" , forums_path %> <span class="divider">/</span></li>
+    <li><%= link_to @city.country.name , forum_path(@city.country) %> <span class="divider">/</span></li>
+    <li class="active"><%= @city.name %></h2></li>
+</ul>
+
 <div>
 	<h2><%= @city.name %></h2>
 	<table>
@@ -9,7 +15,9 @@
 		<% @topics.each do |topic| %>
 		<tr>
 			<td><%= link_to topic.title , {:action => 'show', :id => topic} %></td>
-			<td><%= topic.description %></td>
+			<td><%= topic.description %><td>
+			<td><%= topic.user.full_name %> </td>
+			<td><%= topic.created_at %> </td>
 		</tr>
 		<% end %>
 	<% end %>
