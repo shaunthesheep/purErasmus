@@ -12,8 +12,11 @@ Purerasmus::Application.routes.draw do
     resources :pages
     resources :sections
     resources :universities
-    resources :topics
-    resources :forum
+    resources :topics do
+        resources :comments
+    end
+    #resources :comments
+    resources :forums
 
 
     resources :cities do

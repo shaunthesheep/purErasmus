@@ -11,7 +11,7 @@ class UniversitiesController < ApplicationController
         if (country_id)
             @universities = Country.find(country_id).cities.map { |city| city.universities }.flatten
         # If we have a cityId, return only the universities for the specified city.
-        if (city_id)
+        elsif (city_id)
             @universities = City.find(city_id).universities
         # Otherwise, return all the universities.
         else

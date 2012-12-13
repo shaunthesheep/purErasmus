@@ -1,2 +1,44 @@
-<h1>Topics#show</h1>
-<p>Find me in app/views/topics/show.html.erb</p>
+<ul class="breadcrumb">
+    <li><%= link_to "Main forum" , forums_path %> <span class="divider">/</span></li>
+    <li><%= link_to @city.country.name , forum_path(@city.country) %> <span class="divider">/</span></li>
+    <li><%= link_to @city.name , {:action => 'index'} %> <span class="divider">/</span></li>
+    <li class="active"><%= @topic.title %></h2></li>
+</ul>
+
+<h2><%= @topic.title %></h2>
+<p><%= @topic.description %></p>
+<p><%= @topic.user.full_name %></p>
+
+<br>
+<% if @topic.comments.empty? %>
+	<em> This topic is empty</em>
+	<br>
+<% else %> 
+	<table>
+	<% @topic.comments.each do |comment| %>
+			<tr>
+				<td>
+					<a id="comment<%= comment.id %>"></a>
+					<%= comment.description %>
+					<%= comment.user.full_name %>
+					<%= comment.created_at %>
+				</td>
+			</tr>
+	<% end %>	
+	</table>
+<% end %>
+
+<br>
+<% if @user %>
+	<%= form_for  ([@city, @topic, @comment]) do |uForm| %>
+	<table>
+	<tr>
+		<td>Description:</td>
+		<td><%= uForm.text_area :description %></td>
+	</tr>
+	</table>
+	<%= uForm.submit "Submit", {:class => "btn btn-primary"} %><br>
+	<% end %>
+<% end %>
+
+<%= link_to 'back', {:action => 'index'} %>

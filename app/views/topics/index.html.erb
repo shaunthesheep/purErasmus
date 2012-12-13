@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+    <li><%= link_to "Main forum" , forums_path %> <span class="divider">/</span></li>
+    <li><%= link_to @city.country.name , forum_path(@city.country) %> <span class="divider">/</span></li>
+    <li class="active"><%= @city.name %></h2></li>
+</ul>
+
 <div>
 	<h2><%= @city.name %></h2>
 	<table>
@@ -7,12 +13,23 @@
 		<td>No topics found</td>
 	</tr>
 	<% else %>
+<<<<<<< HEAD
 	<% @topics.each do |topic| %>
 	<tr>
 		<td><%= topic.title %></td>
 		<td><%= topic.description %></td>
 	</tr>
 	<%end%>
+=======
+		<% @topics.each do |topic| %>
+		<tr>
+			<td><%= link_to topic.title , {:action => 'show', :id => topic} %></td>
+			<td><%= topic.description %><td>
+			<td><%= topic.user.full_name %> </td>
+			<td><%= topic.created_at %> </td>
+		</tr>
+		<% end %>
+>>>>>>> 375c3edf77ceabbb2f96bd10ae89b89dcf2376bb
 	<% end %>
 	<tr>
 		<%= link_to "Add new topic", new_city_topic_path(@city.id) %>
@@ -20,5 +37,13 @@
 	</table>
 </div>
 <div>
+<<<<<<< HEAD
+=======
+	<% if @user %>
+		<%= link_to "Add new topic", new_city_topic_path(@city.id) %>
+	<% end %>
+</div>
+<div>
+>>>>>>> 375c3edf77ceabbb2f96bd10ae89b89dcf2376bb
 	<%= link_to "back" , forum_path(@city.country) %>
 </div>
