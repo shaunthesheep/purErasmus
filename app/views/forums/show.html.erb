@@ -4,35 +4,47 @@
 </ul>
 
 <h2><%= @country.name %></h2>
-<% if @country.cities.empty? %>
-<em> No cities</em>
-<br>
-<% else %> 
-	<table>
+<div class="accordion" id="accordion2">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+				Cities with topics
+			</a>
+		</div>
+		<div id="collapseOne" class="accordion-body collapse in">
+			<div class="accordion-inner">
+				<table>
+					<% @country.cities.each do |city| %>
+						<% if !city.topics.empty? %>
+							<tr><td><%= link_to city.name, city_topics_url(city.id) %></td></tr>
+						<% end %>
+					<% end %>	
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+				Cities without topics
+			</a>
+		</div>
+		<div id="collapseTwo" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<table>
+					<% @country.cities.each do |city| %>
+							<tr>
+								<% if city.topics.empty? %>
+									<td><%= link_to city.name, city_topics_url(city.id) %></td>
+								<% end %>
+							</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
 
-	<% @country.cities.each do |city| %>
-			<tr>
-				<% if !city.topics.empty? %>
-					<td><%= link_to city.name, city_topics_url(city.id) %></td>
-				<% end %>
-			</tr>
-	<% end %>	
-	</table>
-
-<em> Cities with no topics...</em>
-
-	<table>
-	<% @country.cities.each do |city| %>
-			<tr>
-				<% if city.topics.empty? %>
-					<td><%= link_to city.name, city_topics_url(city.id) %></td>
-				<% end %>
-			</tr>
-	<% end %>
-
-	</table>
-<% end %>
-<br>
 <% if @user %>
 	<%= link_to 'Add new city' , new_city_path %>
 	<br>

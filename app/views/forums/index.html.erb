@@ -1,30 +1,40 @@
 <h2>Forum</h2>
 <p>Choose a country to find a desired forum</p>
-	<% if @countries.empty? %>
-	<em> No countries found</em>
-	<br>
-	<% else %> 
-		<table class="table table-striped">
-			<tr>
-				<th>Countries with cities</th>
-			</tr>
-			<% @countries.each do |country| %>
-				<% if !country.cities.empty? %>
-					<tr>
-						<td><%= link_to country.name, {:action => 'show', :id => country} %></td>
-					</tr>
+<div class="accordion" id="accordion2">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+				Countries with active cities
+			</a>
+		</div>
+		<div id="collapseOne" class="accordion-body collapse in">
+			<div class="accordion-inner">
+				<table>
+						<% @countries.each do |country| %>
+							<% if !country.cities.empty? %>
+								<tr><td><%= link_to country.name, {:action => 'show', :id => country} %></td></tr>
+							<% end %>
+						<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+				Cuntries where you can add your own city
+			</a>
+		</div>
+		<div id="collapseTwo" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<table>
+				<% @countries.each do |country| %>
+					<% if country.cities.empty? %>
+						<tr><td><%= link_to country.name, {:action => 'show', :id => country} %></td></tr>
+					<% end %>
 				<% end %>
-			<% end %>
-
-			<tr>
-				<th>Countries without cities</th>
-			</tr>
-			<% @countries.each do |country| %>
-				<% if country.cities.empty? %>
-					<tr>
-						<td><%= link_to country.name, {:action => 'show', :id => country} %></td>
-					</tr>
-				<% end %>
-			<% end %>
-		</table>	
-	<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

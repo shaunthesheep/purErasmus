@@ -1,2 +1,2 @@
-module ForumHelper
+module ForumsHelper
 end

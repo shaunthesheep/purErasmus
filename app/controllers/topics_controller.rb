@@ -23,7 +23,7 @@ class TopicsController < ApplicationController
         @topic.city = City.find(params[:city_id])
         @topic.user = retrieve_authenticated_user
         if @topic.save
-            redirect_to root_url
+            redirect_to "#{city_topics_path(params[:city_id])}#topic#{@topic.id}"
         else
             render :action => "new"
         end
