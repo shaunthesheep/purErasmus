@@ -1,34 +1,19 @@
-<%= form_for @user do |uForm| %>
-<table>
-	<tr>
-		<td>First Name:</td>
-		<td><%= uForm.text_field :first_name%></td>
-	</tr>
-	<tr>
-		<td>Last Name:</td>
-		<td><%= uForm.text_field :last_name %></td>
-	</tr>
-	<tr>
-		<td>Email:</td>
-		<td><%= uForm.email_field :email %></td>
-	</tr>
-	<tr>
-		<td>Home university:</td>
-		<td><%= uForm.select :university_id, @universities %></td> 
-	</tr>
-	<tr>
-		<td>Foreign university:</td>
-		<td><%= uForm.select :university_id, @universities %></td> 
-	</tr>
-	<tr>
-		<td>Password:</td>
-		<td><%= uForm.password_field :new_password %></td>
-	</tr>
-	<tr>
-		<td>Password (again):</td>
-		<td><%= uForm.password_field :new_password_confirmation %></td>
-	</tr>
-</table>
-<%= uForm.submit "Update" %><br>
-<%= link_to 'Back', {:action => 'show', :id => @user } %>
+<% # This view displays a form for a user to register %>
+<h1>Edit my profile</h1>
+
+<hr>
+
+<p class="text-info">You can update your account at any given moment to better reflect your current situation.</p>
+
+<hr>
+
+<%= form_for @user, :html => { :class => "form-horizontal" } do |u| %>
+	<%= render :partial => "user_edit", :locals => {
+		:u => u,
+		:countries => @countries
+	} %>
+
+    <div class="form-actions">
+		<%= u.submit "Save", :class => "btn btn-primary" %>
+	</div>
 <% end %>

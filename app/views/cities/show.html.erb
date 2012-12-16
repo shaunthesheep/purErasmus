@@ -1,21 +1,30 @@
-<h2><%= @city.name %> (<%= link_to @city.country.name, @city.country %>)</h2>
-<h4><%= @city.description %></h4>
-<% if @city.universities.empty? %>
-<em> No Universities</em>
-<br>
-<% else %> 
-	<table>
-<% @city.universities.each do |university| %>
-		<tr>
-			<td><%= link_to university.name_english, university %></td>
-		</tr>
-<% end %>	
-	</table>
-<% end %>
-<br>
-<%= link_to 'Edit city', {:action => 'edit', :id => @city} %><br>
-<%= link_to "Delete", 
-	@city, 
-	:method => :delete,
-	:confirm => "Are you sure you want to delete this city?" %><br>
-<%= link_to 'Back', {:action => 'index'} %>
+<div class="city-info">
+	<img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= @city.name %>,<%= @city.country.name %>&zoom=10&size=470x280&sensor=false">
+	<div class="gradient"></div>
+	<div class="info">
+		<div class="info-cell">
+			<div>
+				<h1><%= @city.name %><h1>
+				<h2><%= link_to @city.country.name, @city.country %></h2>
+			</div>
+			<div class="description">
+				<%= @city.description %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Administration panel, visible only to administrator -->
+<div class="city-buttons">
+	<%= link_to "Edit", edit_city_path(@city), :class => "btn" %>
+	<%= link_to "Delete", @city, 
+		:class => "btn btn-danger",
+		:method => :delete,
+		:confirm => "Are you sure you want to delete this city?" %>
+</div>
+
+<ul class="breadcrumb">
+	<li><%= link_to "Home", root_url %> <span class="divider">/</span></li>
+	<li><%= link_to "Cities", cities_path %> <span class="divider">/</span></li>
+	<li class="active"><%= @city.name %></li>
+</ul>

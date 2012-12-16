@@ -1,19 +1,27 @@
-<%= form_for @city do |uForm| %>
-<table>
-<tr>
-	<td>Name:</td>
-	<td><%= uForm.text_field :name %></td>
-</tr>
-<tr>
-	<td>Country:</td>
-	<td><%= uForm.select :country_id, @countries %></td> 
-</tr>
-<tr>
-	<td>Description:</td>
-	<td><%= uForm.text_area :description %></td>
-</tr>
-</table>
+<% # This view displays a form for a user to create a new City %>
+<h1>Create a new City</h1>
 
-<%= uForm.submit "Create" %><br>
-<%= link_to 'Back', {:action => 'index' } %>
+<hr>
+
+<p class="text-info">If your City is not already present on the website, you can use the following form to create it. Make sure to double-check if this City does not already exist though.</p>
+
+<hr>
+
+<%= form_for @city, :html => { :class => "form-horizontal" } do |f| %>
+	<%= render :partial => "city_edit", :locals => {
+		:f => f,
+		:countries => @countries,
+		:mode => :new
+	} %>
+
+	<div class="form-actions">
+		<%= f.submit "Create City", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", root_url, :class => "btn" %>
+	</div>
 <% end %>
+
+<ul class="breadcrumb">
+	<li><%= link_to "Home", root_url %> <span class="divider">/</span></li>
+	<li><%= link_to "Cities", cities_path %> <span class="divider">/</span></li>
+	<li class="active">New City</li>
+</ul>

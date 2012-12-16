@@ -1,4 +1,16 @@
 class UsersController < ApplicationController
+    before_filter :register_layout_setup, :only => [:new, :create]
+    before_filter :user_layout_setup, :only => [:edit, :update]
+
+    # This filter is used to set the selected tab for the New and Create actions.
+    def register_layout_setup
+        @tab = :register
+    end
+
+    # This filter is used to set the selected tab for the Edit and Update actions.
+    def user_layout_setup
+        @tab = :user
+    end
 
     # GET /users
     # Action method to display a list of all the users.
@@ -17,8 +29,8 @@ class UsersController < ApplicationController
     # Action method to edit a specific user.
     # TODO: Manage authorizations to filter who can access this page.
     def edit
-        @user = User.find(params[:id])
-        @universities = University.all.map { |university| [university.name_original, university.id] }
+        @user = User.find(params[:id])        
+        @countries = Country.all.map { |country| [country.name, country.id] }
     end
 
     # GET /users/new
@@ -33,7 +45,10 @@ class UsersController < ApplicationController
     def create
         @user = User.new(params[:user])
         if @user.save
-            redirect_to root_url
+            redirect_to root_url, :notice => {
+                :title => "Success!",
+                :message => "Your are now a Purerasmus member."
+            }
         else 
             render :action => "new"
         end
@@ -44,7 +59,9 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update_attributes(params[:user])
-            redirect_to @user
+            redirect_to @user, :notice => {
+                :message => "Your profile was updated."
+            }
         else
             render "edit"
         end
