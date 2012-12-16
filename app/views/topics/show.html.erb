@@ -39,6 +39,8 @@
 	</table>
 	<%= uForm.submit "Submit", {:class => "btn btn-primary"} %><br>
 	<% end %>
+<% else %>
+<p> You must be logged in to add comments </p>
 <% end %>
 
 <%= link_to 'back', {:action => 'index'} %>

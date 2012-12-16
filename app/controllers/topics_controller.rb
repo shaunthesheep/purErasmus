@@ -14,6 +14,10 @@ class TopicsController < ApplicationController
 	end
 	
 	def new
+        if !@user
+            flash[:notice] = "Sorry, you must be logged on to add topic"
+           redirect_to :action => "index"
+        end
        @topic = Topic.new
        @city = City.find(params[:city_id])
  	end
