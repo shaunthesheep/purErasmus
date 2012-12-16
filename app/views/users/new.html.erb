@@ -1,12 +1,13 @@
 <% # This view displays a form for a user to register %>
 <h1>Register</h1>
 
-<hr />
+<hr>
 
 <p class="text-info">You're just one step away! Once registered, you'll be able to interact with other users, ask questions, and publish content of your own!</p>
 
-<hr />
+<hr>
 
+<<<<<<< HEAD
 <%= form_for @user, :html => { :class => "form-horizontal" } do |u| %>
 	<!-- Personal details -->
 	<fieldset>
@@ -132,9 +133,16 @@
 		</div>
 
   	</fieldset>
+=======
+<%= form_for @user, :html => { :class => "form-horizontal" } do |f| %>
+	<%= render :partial => "user_edit", :locals => {
+		:f => f,
+		:countries => @countries
+	} %>
+>>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
 
     <div class="form-actions">
-		<%= u.submit "Register", :class => "btn btn-primary" %>
+		<%= f.submit "Register", :class => "btn btn-primary" %>
 		<%= link_to "Cancel", root_url, :class => "btn" %>
 	</div>
 <% end %>

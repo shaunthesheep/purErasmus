@@ -1,4 +1,22 @@
 class CitiesController < ApplicationController
+    before_filter :city_layout_setup
+    before_filter :retrieve_city, :only => [:show, :edit, :update, :destroy]
+    before_filter :retrieve_countries, :only => [:new, :create, :edit, :update]
+
+    # This filter is used to set the selected tab.
+    def city_layout_setup
+        @tab = :city
+    end
+
+    # This filter retrieves a city from its Id.
+    def retrieve_city
+        @city = City.find(params[:id])         
+    end
+
+    # This filter retrieves a list of countries for the "edit city" form.
+    def retrieve_countries
+        @countries = Country.all.map { |country| [country.name, country.id] }        
+    end
 
     # GET /cities
     # GET /countries/:country_id/cities
@@ -21,7 +39,10 @@ class CitiesController < ApplicationController
         end
     end
 
+    # GET /cities/:id
+    # Action method to display detailed information about a specific city.
     def show
+<<<<<<< HEAD
         @city = City.find(params[:id])
         @user = retrieve_authenticated_user
         page_id = params[:page_id]
@@ -30,38 +51,63 @@ class CitiesController < ApplicationController
         else
             @page = @city.pages.first
         end
+=======
+>>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
     end
 
+    # GET /cities/:id/edit
+    # Action method to edit a specific city.
+    # TODO: Manage authorizations to filter who can access this page.
     def edit
-        @city = City.find(params[:id])
-        @countries = Country.all.map { |country| [country.name, country.id] }
     end
 
+    # GET /cities/new
+    # Action method to create a new city.
     def new
         @city = City.new
-        @countries = Country.all.map { |country| [country.name, country.id] }
     end
 
+    # POST /cities
+    # Action method to send the city creation form.
     def create
         @city = City.new(params[:city])
         if @city.save
+<<<<<<< HEAD
             redirect_to city_path(@city)
+=======
+            redirect_to @city, :notice => {
+                :title => "Success!",
+                :message => "City " + @city.name + " was created."
+            }
+>>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
         else 
             render "new"
         end
     end
 
+    # PUT /cities/:id
+    # Action method to send the "edit city" form.
     def update
-        @city = City.find(params[:id])
         if @city.update_attributes(params[:city])
+<<<<<<< HEAD
             redirect_to city_path(@city)
+=======
+            redirect_to @city, :notice => {
+                :message => "City " + @city.name + " was updated."
+            }
+>>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
         else
             render "edit"
         end
     end
 
+    # DELETE /cities/:id
+    # Action method to delete a specific city.
     def destroy
-        City.find(params[:id]).destroy
-        redirect_to cities_path
+        @city.destroy
+        redirect_to cities_path, :notice => {
+            :title => "Success!",
+            :message => "City " + @city.name + " was deleted."
+        }
     end
 end

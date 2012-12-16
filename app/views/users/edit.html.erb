@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Edit</h1>
 
 <hr />
@@ -132,3 +133,24 @@
 	</div>
 
 <% end %>
+=======
+<% # This view displays a form for a user to register %>
+<h1>Edit my profile</h1>
+
+<hr>
+
+<p class="text-info">You can update your account at any given moment to better reflect your current situation.</p>
+
+<hr>
+
+<%= form_for @user, :html => { :class => "form-horizontal" } do |u| %>
+	<%= render :partial => "user_edit", :locals => {
+		:u => u,
+		:countries => @countries
+	} %>
+
+    <div class="form-actions">
+		<%= u.submit "Save", :class => "btn btn-primary" %>
+	</div>
+<% end %>
+>>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687

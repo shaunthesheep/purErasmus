@@ -1,6 +1,4 @@
 Purerasmus::Application.routes.draw do
-  get "home/index"
-
     # Home route.
     root :to  => "home#index"
 
@@ -30,19 +28,17 @@ Purerasmus::Application.routes.draw do
     resources :users
     resources :universities
     resources :cities
+<<<<<<< HEAD
     resources :pages
     resources :sections
 
 
         
+=======
+    
+>>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
     resources :countries do
-        # This is used to display the universities in a specific country.
         resources :universities
-        # This is used to display the cities in a specific country.
-        resources :cities do
-            # This is used to display the universities in a specific country.
-            resources :universities
-        end
     end
 
     resources :cities do

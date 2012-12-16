@@ -1,6 +1,6 @@
 $ ->
 	# Make sure we are on the right page.
-	if $("#new_user").length == 0
+	if $(".user_edit_form").length == 0
 		return
 
 	# ----
@@ -8,7 +8,7 @@ $ ->
 	# ----
 
 	# Retrieve the dom elements.
-	check_is_exchange = $("#exchange_student")
+	check_is_exchange = $(".cb_is_exchange_student")
 	div_exchange_student_location = $("#exchange_student_location")
 
 	# Add an event for a change of state for the checkbox.
@@ -60,6 +60,8 @@ $ ->
 	
 		# Update the university dropdown.
 		update_dropdown("/countries/#{city_id}/universities", university_dropdown)
+
+	return
 
 # ----
 # Common methods.
