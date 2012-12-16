@@ -9,7 +9,6 @@ Purerasmus::Application.routes.draw do
 
     # Standard controller routes.
     resources :users
-<<<<<<< HEAD
     resources :pages
     resources :sections
     resources :universities
