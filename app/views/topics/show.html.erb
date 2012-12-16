@@ -6,39 +6,40 @@
 </ul>
 
 <h2><%= @topic.title %></h2>
-<p><%= @topic.description %></p>
-<p><%= @topic.user.full_name %></p>
-
-<br>
-<% if @topic.comments.empty? %>
-	<em> This topic is empty</em>
-	<br>
-<% else %> 
-	<table>
-	<% @topic.comments.each do |comment| %>
-			<tr>
-				<td>
-					<a id="comment<%= comment.id %>"></a>
-					<%= comment.description %>
-					<%= comment.user.full_name %>
-					<%= comment.created_at %>
-				</td>
-			</tr>
-	<% end %>	
-	</table>
-<% end %>
+<div class="well">
+<dl class="dl-horizontal">
+	<dt><p class="text-overflow"><%= @topic.user.full_name %><br><%= @topic.created_at %></p></dt>
+	<dd><%= @topic.description %></dd>
+</dl>
+	
+	<% if @topic.comments.empty? %>
+		<em> This topic is empty</em>
+		<br>
+	<% else %> 
+		<table>
+		<% @topic.comments.each do |comment| %>
+			<a id="comment<%= comment.id %>"></a>
+			<dl class="dl-horizontal">
+				<dt><p class="text-overflow">
+				<%= comment.user.full_name %><br>
+				<%= comment.created_at %></p></dt>
+				<dd><%= comment.description %></dd>
+			</dl>
+		<% end %>	
+		</table>
+	<% end %>
+</div>
 
 <br>
 <% if @user %>
 	<%= form_for  ([@city, @topic, @comment]) do |uForm| %>
-	<table>
-	<tr>
-		<td>Description:</td>
-		<td><%= uForm.text_area :description %></td>
-	</tr>
-	</table>
+	<dl class="dl-horizontal"><dt>Quick reply:</dt>
+		<dd><%= uForm.text_area(:description, :size => "50x10")%></dd>
+	
 	<%= uForm.submit "Submit", {:class => "btn btn-primary"} %><br>
 	<% end %>
+<% else %>
+<p> You must be logged in to add comments </p>
 <% end %>
 
 <%= link_to 'back', {:action => 'index'} %>
