@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
         if user_id
             @site_user = User.find(user_id)
         end
+    rescue ActiveRecord::RecordNotFound
+    	@site_user = nil
     end
 
 end

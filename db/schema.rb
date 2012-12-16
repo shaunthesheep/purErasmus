@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20121107164439) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
+    t.boolean  "is_exchange_student"
     t.string   "password"
     t.string   "password_salt"
     t.integer  "admin_university_id"

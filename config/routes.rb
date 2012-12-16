@@ -9,6 +9,7 @@ Purerasmus::Application.routes.draw do
 
     # Standard controller routes.
     resources :users
+<<<<<<< HEAD
     resources :pages
     resources :sections
     resources :universities
@@ -29,13 +30,7 @@ Purerasmus::Application.routes.draw do
 
         
     resources :countries do
-        # This is used to display the universities in a specific country.
         resources :universities
-        # This is used to display the cities in a specific country.
-        resources :cities do
-            # This is used to display the universities in a specific country.
-            resources :universities
-        end
     end
 
     # The priority is based upon order of creation:

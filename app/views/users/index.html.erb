@@ -11,6 +11,13 @@
 			<th>Home University</th>
 			<th>Foreign University</th>
 		</tr>
+<<<<<<< HEAD
+			<% @users.each do |user| %>
+		<tr>
+			<td><%= link_to user.full_name, user %></td>
+			<td><%= user.email %></td>
+		</tr>
+=======
 		<% @users.each do |user| %>
 			<tr>
 				<td><%= link_to user.full_name, user %></td>
@@ -21,7 +28,9 @@
 					
 			</tr>
 		<% end %>
+>>>>>>> 7ed3d0c463b87d5e22cd7a7a892384725b9a3b1b
 	</table>
+<% end %>	
 <% end %>	
 <br>
 
