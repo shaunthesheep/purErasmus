@@ -1,18 +1,22 @@
-<h2>Countries</h2>
+<h1>Countries</h1>
+
+<hr />
+<p class="text-info">Are you looking for any country? Here you can!</p>
+<hr />
 <% if @countries.empty? %>
 <em> No countries found</em>
 <br>
 <% else %> 
-	<table class="table table-striped">
-		<tr>
-			<th>Name</th>
-		</tr>
+<ul class="inline">
 <% @countries.each do |country| %>
-		<tr>
-			<td><%= link_to country.name, country %></td>
-		</tr>
+		<li><%= link_to country.name, country %></li>
 <% end %>
-	</table>	
+</ul>	
 <% end %>
-<br>
-<%= link_to "Add new country", {:action => 'new' }%>
+
+<% if @user %>
+	<br>
+	<%= link_to "Add new country", {:action => 'new' }, :class => "btn"%><br>
+	<hr />
+<% end %>
+<%= link_to "Back", :back, :class => "btn" %>

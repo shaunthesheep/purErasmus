@@ -1,14 +1,30 @@
-<%= form_for @page do |uForm| %>
-<table>
-	<tr>
-		<td>Title:</td>
-		<td><%= uForm.text_field :title %></td>
-	</tr>
-	<tr>
-		<td>Body:</td>
-		<td><%= uForm.text_area :body %></td>
-	</tr>
-</table>
-<%= uForm.submit "Update" %><br>
-<%= link_to 'Back', {:action => 'show', :id => @page } %>
+<h1>Edit Page</h1>
+
+<hr />
+
+<p class="text-info">Does this page have any mistake or field outdated? Help us, and feel free to modify it :)</p>
+
+<hr />
+
+<%= form_for @page, :html => { :class => "form-horizontal" } do |u| %>
+	<fieldset>
+	    <div class="control-group">
+	        <%= u.label :title, "Title", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :title, :placeholder => "Title" %>
+	        </div>
+	    </div>
+
+	    <div class="control-group">
+	        <%= u.label :body, "Body", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_area :body, :placeholder => "Body", :rows =>7 %>
+	        </div>
+	    </div>
+	</fieldset>
+
+    <div class="form-actions">
+		<%= u.submit "Update", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", :back, :class => "btn" %>
+	</div>
 <% end %>

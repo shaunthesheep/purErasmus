@@ -5,12 +5,14 @@ class UsersController < ApplicationController
     # The presentation of this remains to be decided.
     def index
         @users = User.all
+        @user = retrieve_authenticated_user
     end
 
     # GET /users/:id
     # Action method to display detailed information about a specific user.
     def show
         @user = User.find(params[:id]) 
+        @user_me = retrieve_authenticated_user
     end
 
     # GET /users/:id/edit
@@ -18,7 +20,9 @@ class UsersController < ApplicationController
     # TODO: Manage authorizations to filter who can access this page.
     def edit
         @user = User.find(params[:id])
-        @universities = University.all.map { |university| [university.name_original, university.id] }
+        @countries = Country.all.map { |country| [country.name, country.id] }        
+                
+        
     end
 
     # GET /users/new
@@ -33,7 +37,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(params[:user])
         if @user.save
-            redirect_to root_url
+            redirect_to user_path(@user)
         else 
             render :action => "new"
         end
@@ -44,7 +48,7 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update_attributes(params[:user])
-            redirect_to @user
+            redirect_to user_path(@user)
         else
             render "edit"
         end

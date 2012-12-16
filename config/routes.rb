@@ -7,7 +7,24 @@ Purerasmus::Application.routes.draw do
     # User authentication-flow routes.
     match "/login" => "sessions#new", :as => "login", :via => :get
     match "/login" => "sessions#create", :via => :post
-    match "/logout" => "sessions#destroy", :as => "logout" 
+    match "/logout" => "sessions#destroy", :as => "logout"
+
+    match "/universities/:id/pages/new" => "pages#new"
+    match "/universities/:id/pages/:page_id/edit" => "pages#edit"
+    match "/universities/:id/pages/:page_id" => "universities#show"
+    match "/universities/:id/pages" => "universities#show"
+
+    match "/cities/:city_id/pages/new" => "pages#new"
+    match "/cities/:id/pages/:page_id/edit" => "pages#edit"
+    match "/cities/:id/pages/:page_id" => "cities#show"
+    match "/cities/:id/pages" => "cities#show"
+
+    match "/universities/:id/pages/:page_id/sections/new" => "sections#new"
+    match "/cities/:city_id/pages/:page_id/sections/new" => "sections#new"
+    
+    match "/universities/:id/pages/:page_id/sections/:section_id/edit" => "sections#edit"
+    match "/cities/:city_id/pages/:page_id/sections/:section_id/edit" => "sections#edit"
+
 
     # Standard controller routes.
     resources :users
@@ -15,6 +32,8 @@ Purerasmus::Application.routes.draw do
     resources :cities
     resources :pages
     resources :sections
+
+
         
     resources :countries do
         # This is used to display the universities in a specific country.
@@ -23,6 +42,18 @@ Purerasmus::Application.routes.draw do
         resources :cities do
             # This is used to display the universities in a specific country.
             resources :universities
+        end
+    end
+
+    resources :cities do
+        resources :pages do
+            resources :sections
+        end
+    end
+
+    resources :universities do
+        resources :pages do
+            resources :sections
         end
     end
 

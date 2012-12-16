@@ -1,19 +1,40 @@
-<%= form_for @city do |uForm| %>
-<table>
-<tr>
-	<td>Name:</td>
-	<td><%= uForm.text_field :name %></td>
-</tr>
-<tr>
-	<td>Country:</td>
-	<td><%= uForm.select :country_id, @countries %></td> 
-</tr>
-<tr>
-	<td>Description:</td>
-	<td><%= uForm.text_area :description %></td>
-</tr>
-</table>
+<h1>New City</h1>
 
-<%= uForm.submit "Create" %><br>
-<%= link_to 'Back', {:action => 'index' } %>
+<hr />
+
+<p class="text-info">If your city do not exist, come on! help us to create it!</p>
+
+<hr />
+
+<%= form_for @city, :html => { :class => "form-horizontal" } do |u| %>
+
+	<fieldset>
+	    <div class="control-group">
+	        <%= u.label :name, "Name", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :name, :placeholder => "Name" %>
+	        </div>
+	    </div>
+
+		<div class="control-group">
+		     <%= u.label :country_id, "Country", :class => "control-label" %>
+		    <div class="controls">
+		        <%= u.select :country_id, [["Select one", -1]].concat(@countries), :class => "city-dropdown" %>
+		    </div>
+		</div>
+
+	    <div class="control-group">
+	        <%= u.label :description, "Description", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_area :description, :placeholder => "Description", :rows => 7 %>
+	        </div>
+	    </div>
+
+  	</fieldset>
+
+    <div class="form-actions">
+		<%= u.submit "Create", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", :back, :class => "btn" %>
+	</div>
+
 <% end %>

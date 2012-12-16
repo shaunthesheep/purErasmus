@@ -1,11 +1,25 @@
-<%= form_for @country do |uForm| %>
-<table>
-<tr>
-	<td>Name:</td>
-	<td><%= uForm.text_field :name %></td>
-</tr>
-</table>
+<h1>New Country</h1>
 
-<%= uForm.submit "Create" %><br>
-<%= link_to 'Back', {:action => 'index' } %>
+<hr />
+
+<p class="text-info">If your country does not exist, come on! help us to create it!</p>
+
+<hr />
+
+<%= form_for @country, :html => { :class => "form-horizontal" } do |u| %>
+
+	<fieldset>
+	    <div class="control-group">
+	        <%= u.label :name, "Name", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :name, :placeholder => "Name" %>
+	        </div>
+	    </div>
+  	</fieldset>
+
+    <div class="form-actions">
+		<%= u.submit "Create", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", :back, :class => "btn" %>
+	</div>
+
 <% end %>

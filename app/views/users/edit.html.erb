@@ -1,34 +1,134 @@
-<%= form_for @user do |uForm| %>
-<table>
-	<tr>
-		<td>First Name:</td>
-		<td><%= uForm.text_field :first_name%></td>
-	</tr>
-	<tr>
-		<td>Last Name:</td>
-		<td><%= uForm.text_field :last_name %></td>
-	</tr>
-	<tr>
-		<td>Email:</td>
-		<td><%= uForm.email_field :email %></td>
-	</tr>
-	<tr>
-		<td>Home university:</td>
-		<td><%= uForm.select :university_id, @universities %></td> 
-	</tr>
-	<tr>
-		<td>Foreign university:</td>
-		<td><%= uForm.select :university_id, @universities %></td> 
-	</tr>
-	<tr>
-		<td>Password:</td>
-		<td><%= uForm.password_field :new_password %></td>
-	</tr>
-	<tr>
-		<td>Password (again):</td>
-		<td><%= uForm.password_field :new_password_confirmation %></td>
-	</tr>
-</table>
-<%= uForm.submit "Update" %><br>
-<%= link_to 'Back', {:action => 'show', :id => @user } %>
+<h1>Edit</h1>
+
+<hr />
+
+<p class="text-info">Any of your fields are not OK or are outdated. Here you can modify it!</p>
+
+<hr />
+<%= form_for @user, :html => { :class => "form-horizontal" } do |u| %>
+	<!-- Personal details -->
+	<fieldset>
+    	<legend>About you</legend>
+    	
+    	<!-- First name -->
+	    <div class="control-group">
+	        <%= u.label :first_name, "First name", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :first_name, :placeholder => "First name" %>
+	        </div>
+	    </div>
+
+	    <!-- Last name -->
+	    <div class="control-group">
+	        <%= u.label :last_name, "Last name", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :last_name, :placeholder => "Last name" %>
+	        </div>
+	    </div>
+
+	    <!-- Email -->
+	    <div class="control-group">
+	        <%= u.label :email, "Email", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.email_field :email, :placeholder => "Email" %>
+	        </div>
+	    </div>
+
+  	</fieldset>
+
+  	<!-- Password -->
+  	<fieldset>
+  		<legend>Password</legend>
+
+  		<!-- Password -->
+	    <div class="control-group">
+	        <%= u.label :new_password, "Password", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.password_field :new_password, :placeholder => "Password" %>
+	        </div>
+	    </div>
+
+	    <!-- Password confirmation -->
+	    <div class="control-group">
+	        <%= u.label :new_password_confirmation, "Confirmation", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.password_field :new_password_confirmation, :placeholder => "Confirmation" %>
+	        </div>
+	    </div>
+	</fieldset>
+	      	<!-- Location -->
+  	<fieldset>
+  		<legend>Where are you (from)?</legend>
+
+  		<div class="country-university-group">
+
+	  		<!-- Home country -->
+		    <div class="control-group">
+		        <%= u.label :home_country_id, "Home country", :class => "control-label" %>
+		        <div class="controls">
+		            <%= select_tag :home_country_id, options_for_select([["Select one", -1]].concat(@countries)), :class => "country-dropdown", :select => :city_id %>
+		        </div>
+		    </div>
+
+		    <!-- Home city -->
+		    <div class="control-group">
+		        <%= u.label :home_city_id, "Home city", :class => "control-label" %>
+		        <div class="controls">
+		            <%= select_tag :home_city_id, options_for_select([["First, select a country", -1]]), :class => "city-dropdown", :select => :city_id %>
+		        </div>
+		    </div>
+
+		    <!-- Home university -->
+		    <div class="control-group">
+		        <%= u.label :home_university_id, "Home university", :class => "control-label" %>
+		        <div class="controls">
+		            <%= u.select :home_university_id, [["First, select a city", -1]], {}, :class => "university-dropdown", :select => :city_id %>
+		        </div>
+		    </div>
+
+		</div>
+
+		<!-- Checkbox for ERASMUS students -->
+	    <div class="control-group">
+	        <div class="controls">
+	        	<label class="checkbox">
+	        		<%= check_box_tag :exchange_student %>
+	        		I am an ERASMUS exchange student or candidate.
+	        	</label>
+	        </div>
+	    </div>
+
+	    <div id="exchange_student_location" class="country-university-group">
+
+		    <!-- Foreign country -->
+		    <div class="control-group">
+		        <%= u.label :foreign_country_id, "Foreign country", :class => "control-label" %>
+		        <div class="controls">
+		            <%= select_tag :foreign_country_id, options_for_select([["Select one", -1]].concat(@countries)), :class => "country-dropdown", :select => :city_id %>
+		        </div>
+		    </div>
+
+		    <!-- Foreign city -->
+		    <div class="control-group">
+		        <%= u.label :foreign_city_id, "Foreign city", :class => "control-label" %>
+		        <div class="controls">
+		            <%= select_tag :foreign_city_id, options_for_select([["First, select a country", -1]]), :class => "city-dropdown", :select => :city_id %>
+		        </div>
+		    </div>
+
+		    <!-- Exchange university -->
+		    <div class="control-group">
+		        <%= u.label :foreign_university_id, "Exchange university", :class => "control-label" %>
+		        <div class="controls">
+		            <%= u.select :home_university_id, [["First, select a city", -1]], {}, :class => "university-dropdown", :select => :city_id %>
+		        </div>
+		    </div>
+		</div>    
+	</fieldset>
+
+    <div class="form-actions">
+		<%= u.submit "Update", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", :back, :class => "btn" %>
+	</div>
+
 <% end %>

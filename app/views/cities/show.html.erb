@@ -1,21 +1,81 @@
-<h2><%= @city.name %> (<%= link_to @city.country.name, @city.country %>)</h2>
+<h1><%= @city.name %> ( <%= link_to @city.country.name, @city.country %>)</h1>
+<hr />
 <h4><%= @city.description %></h4>
+
 <% if @city.universities.empty? %>
-<em> No Universities</em>
-<br>
+	<em> No Universities</em>
+	<br>
 <% else %> 
-	<table>
-<% @city.universities.each do |university| %>
-		<tr>
-			<td><%= link_to university.name_english, university %></td>
-		</tr>
-<% end %>	
-	</table>
+	<lu class="inline">
+	<% @city.universities.each do |university| %>
+		<li> <%= link_to university.name_english, university %> </li>
+	<% end %>	
+	</lu>
 <% end %>
-<br>
-<%= link_to 'Edit city', {:action => 'edit', :id => @city} %><br>
-<%= link_to "Delete", 
-	@city, 
-	:method => :delete,
-	:confirm => "Are you sure you want to delete this city?" %><br>
-<%= link_to 'Back', {:action => 'index'} %>
+
+<% if @user %>
+	<%= link_to "New university", url_for([:new, :university]), :class => "btn" %><br>
+<% end %>
+
+
+<hr />
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">
+
+			<h4>List of Pages </h4>
+			<% if @city.pages.empty? %>
+				<em> No Pages</em>
+				<br>
+
+		</div>
+	</div>
+</div>
+
+			<% else %>
+				<lu> 
+					<% @city.pages.each do |page| %>
+						<li><%= link_to page.title,  url_for([@city, page]) %></li>
+					<% end %>	
+				</lu>
+				<br>
+				<% if @user %>
+					<%= link_to "New Page", url_for([:new, @city, :page]), :class => "btn"  %>
+				<% end %>
+
+ 		</div>
+		<div class="span10">
+
+			<h2><%= @page.title %><% if @user %>     <%= link_to "(Edit Page)", url_for([:edit, @city, @page]) %>     <%= link_to "(Delete Page)", @page, :method => :delete, :confirm => "Are you sure you want to delete this page?" %><% end %><br></h2>
+			<h4><%= @page.body %></h4>
+			<hr/>
+			<h3>List of Sections<% if @user %>     - <%= link_to "New Section", url_for([:new, @city, @page, :section]), :class => "btn" %><% end %></h3>
+			<% if @page.sections.empty? %>
+				<em> No Sections</em>
+				<br>
+			<% else %>
+				<dl >
+					<% @page.sections.each do |section| %>
+						<h4><dt> ·  <%= section.title %><% if @user %>     <%= link_to "(Edit)", url_for([:edit, @city, @page, section]) %>     <%= link_to "(Delete)", section, :method => :delete, :confirm => "Are you sure you want to delete this section?" %><% end %><br></dt></h4>
+						<h6><dd><%= section.description %></dd></h6>
+						<br>
+					<% end %>
+				</dl>
+			<% end %>
+
+ 		</div>
+	</div>
+</div>
+
+			<% end %>
+			<hr />
+
+<% if @user %>
+	<br>
+	<%= link_to 'Edit city', {:action => 'edit', :id => @city}, :class => "btn" %>
+	<%= link_to "Delete", @city, :method => :delete, :confirm => "Are you sure you want to delete this city?", :class => "btn" %>
+	<br>
+	<hr />
+<% end %>
+
+<%= link_to 'Back', :back, :class => "btn" %>
