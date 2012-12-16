@@ -34,15 +34,14 @@ class CitiesController < ApplicationController
         end
 
         # Decide on the return format.
-        respond_to do |format|
-            format.json { render :json  => @cities }
-        end
+        #respond_to do |format|
+        #    format.json { render :json  => @cities }
+        #end
     end
 
     # GET /cities/:id
     # Action method to display detailed information about a specific city.
     def show
-<<<<<<< HEAD
         @city = City.find(params[:id])
         @user = retrieve_authenticated_user
         page_id = params[:page_id]
@@ -51,9 +50,7 @@ class CitiesController < ApplicationController
         else
             @page = @city.pages.first
         end
-=======
->>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
-    end
+   end
 
     # GET /cities/:id/edit
     # Action method to edit a specific city.
@@ -72,14 +69,10 @@ class CitiesController < ApplicationController
     def create
         @city = City.new(params[:city])
         if @city.save
-<<<<<<< HEAD
-            redirect_to city_path(@city)
-=======
             redirect_to @city, :notice => {
                 :title => "Success!",
                 :message => "City " + @city.name + " was created."
             }
->>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
         else 
             render "new"
         end
@@ -89,14 +82,10 @@ class CitiesController < ApplicationController
     # Action method to send the "edit city" form.
     def update
         if @city.update_attributes(params[:city])
-<<<<<<< HEAD
-            redirect_to city_path(@city)
-=======
             redirect_to @city, :notice => {
                 :message => "City " + @city.name + " was updated."
             }
->>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
-        else
+       else
             render "edit"
         end
     end

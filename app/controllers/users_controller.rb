@@ -31,15 +31,9 @@ class UsersController < ApplicationController
     # Action method to edit a specific user.
     # TODO: Manage authorizations to filter who can access this page.
     def edit
-<<<<<<< HEAD
         @user = User.find(params[:id])
         @countries = Country.all.map { |country| [country.name, country.id] }        
                 
-        
-=======
-        @user = User.find(params[:id])        
-        @countries = Country.all.map { |country| [country.name, country.id] }
->>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
     end
 
     # GET /users/new
@@ -54,14 +48,10 @@ class UsersController < ApplicationController
     def create
         @user = User.new(params[:user])
         if @user.save
-<<<<<<< HEAD
-            redirect_to user_path(@user)
-=======
             redirect_to root_url, :notice => {
                 :title => "Success!",
                 :message => "Your are now a Purerasmus member."
             }
->>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
         else 
             render :action => "new"
         end
@@ -72,13 +62,9 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update_attributes(params[:user])
-<<<<<<< HEAD
-            redirect_to user_path(@user)
-=======
             redirect_to @user, :notice => {
                 :message => "Your profile was updated."
             }
->>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
         else
             render "edit"
         end

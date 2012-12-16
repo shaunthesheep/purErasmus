@@ -1,45 +1,4 @@
-<<<<<<< HEAD
-<h1>New City</h1>
 
-<hr />
-
-<p class="text-info">If your city do not exist, come on! help us to create it!</p>
-
-<hr />
-
-<%= form_for @city, :html => { :class => "form-horizontal" } do |u| %>
-
-	<fieldset>
-	    <div class="control-group">
-	        <%= u.label :name, "Name", :class => "control-label" %>
-	        <div class="controls">
-	            <%= u.text_field :name, :placeholder => "Name" %>
-	        </div>
-	    </div>
-
-		<div class="control-group">
-		     <%= u.label :country_id, "Country", :class => "control-label" %>
-		    <div class="controls">
-		        <%= u.select :country_id, [["Select one", -1]].concat(@countries), :class => "city-dropdown" %>
-		    </div>
-		</div>
-
-	    <div class="control-group">
-	        <%= u.label :description, "Description", :class => "control-label" %>
-	        <div class="controls">
-	            <%= u.text_area :description, :placeholder => "Description", :rows => 7 %>
-	        </div>
-	    </div>
-
-  	</fieldset>
-
-    <div class="form-actions">
-		<%= u.submit "Create", :class => "btn btn-primary" %>
-		<%= link_to "Cancel", :back, :class => "btn" %>
-	</div>
-
-<% end %>
-=======
 <% # This view displays a form for a user to create a new City %>
 <h1>Create a new City</h1>
 
@@ -67,4 +26,3 @@
 	<li><%= link_to "Cities", cities_path %> <span class="divider">/</span></li>
 	<li class="active">New City</li>
 </ul>
->>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
