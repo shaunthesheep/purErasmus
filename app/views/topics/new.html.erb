@@ -1,13 +1,14 @@
 <%= form_for ([@city, @topic]) do |t| %>
+<h3>Create new topic</h3>
 
 <table>
 <tr>
 	<td>Title:</td>
-	<td><%= t.text_field :title %></td>
+	<td><%= t.text_field(:title, :cols => 60) %></td>
 </tr>
 <tr>
 	<td>Description:</td>
-	<td><%= t.text_area :description %></td>
+	<td><%= t.text_area(:description, :cols => 60, :rows => 5 ) %></td>
 </tr>
 </table>
 <%= t.submit "Create", {:city_id => @city.id}  %><br>

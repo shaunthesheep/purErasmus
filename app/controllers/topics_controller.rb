@@ -14,7 +14,7 @@ class TopicsController < ApplicationController
 	end
 	
 	def new
-        if !@user
+        if !retrieve_authenticated_user
             flash[:notice] = "Sorry, you must be logged on to add topic"
            redirect_to :action => "index"
         end

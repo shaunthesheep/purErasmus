@@ -2,21 +2,32 @@
     <li><%= link_to "Main forum" , forums_path %> <span class="divider">/</span></li>
     <li><%= link_to @city.country.name , forum_path(@city.country) %> <span class="divider">/</span></li>
     <li class="active"><%= @city.name %></h2></li>
+
+<blockquote class="pull-right"><div>
+	<% if @user %>
+		<p><%= link_to "Add new topic", new_city_topic_path(@city.id) %></p>
+	<% end %>
+</div>
+</blockquote>
+
 </ul>
 
+
 <div>
-	<h2><%= @city.name %></h2>
 	<div class="well">
-		<table>
+		<table class="table">
 		<% if @city.topics.empty? %>
 			<tr>
-				<td>No topics found</td>
+				<h4> No topics found </h4>
 			</tr>
 		<% else %>
+			<tr> <h3><strong> Topics </strong></h3> </tr>
 			<% @topics.each do |topic| %>
 				<a id="topic<%= topic.id %>"></a>
-				<p><%= link_to topic.title , {:action => 'show', :id => topic} %></p>
-				<small>by <%= topic.user.full_name %>, at <%= topic.created_at %></small>
+				<tr><td>
+					<p><%= link_to topic.title , {:action => 'show', :id => topic} %></p>
+					<small><blockquote class="pull-right">by <%= topic.user.full_name %>, at <%= topic.created_at %></blockquote></small>
+				</td></tr>
 			<% end %>
 		<% end %>
 		</table>
