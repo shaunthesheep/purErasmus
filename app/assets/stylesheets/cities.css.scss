@@ -1,3 +1,21 @@
+.city-find {
+	width: 300px;
+	margin: auto;
+	padding: 20px 0 20px 0;
+	select {
+		font-size: 1.5em;
+		width: 100%;
+		line-height: 40px;
+		height: 40px;
+		&:disabled {
+			opacity: .5;
+		}
+	}
+	div {
+		padding-bottom: 10px;
+	}
+}
+
 .city-info {
 	margin-top: -10px;
 	background-color: #2B2B2B;
@@ -59,4 +77,27 @@
 	padding: 10px;
 	text-align: right;
 	background-color: #EFEFEF;
+}
+
+.city-content {
+	padding-top: 40px;	
+	padding-bottom: 10px;
+	.right-buttons {
+		text-align: right;
+	}
+	.city-universities {
+		td {
+			cursor: pointer;
+		}
+		tr:nth-child(odd) td {
+	  		background-color: #f9f9f9;
+		}
+		tr:hover td {
+			background-color: #2B2B2B;
+			color: white;
+		}
+		a {
+			display: table-row;
+		}
+	}
 }

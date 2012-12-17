@@ -1,20 +1,28 @@
-<h2>Cities</h2>
-<% if @cities.empty? %>
-<em> No cities found</em>
-<br>
-<% else %> 
-	<table class="table table-striped">
-		<tr>
-			<th>Name</th>
-			<th>Country</th>
-		</tr>
-<% @cities.each do |city| %>
-		<tr>
-			<td><%= link_to city.name, city %></td>
-			<td><%= link_to city.country.name, city.country %></td>
-		</tr>
-<% end %>	
-	</table>
-<% end %>
-<br>
-<%= link_to "Add new city", {:action => 'new' }%>
+<% # This view displays a form a to find a specific city %>
+<div class="hidden city_find_form"></div>
+
+<h1>Find a City</h1>
+
+<div class="header-buttons">
+	<%= link_to "Add a new City", new_city_path, :class => "btn" %>
+</div>
+
+<hr>
+
+<p class="text-info">Select a country bellow to find the City you are looking for. If you can't find your City, you can always <%= link_to "create a new one", new_city_path %>.</p>
+
+<hr>
+
+<div class="city-find">
+	<div>
+		<%= select_tag :country_id, options_for_select([["Select a country", -1]].concat(@countries)), :class => "country-dropdown" %>
+	</div>
+	<div>
+		<%= select_tag :city_id, options_for_select([["Select a city", -1]]), :class => "city-dropdown", :disabled => "disabled" %>
+	</div>
+</div>
+
+<ul class="breadcrumb">
+	<li><%= link_to "Home", root_url %> <span class="divider">/</span></li>
+	<li class="active">Find a City</li>
+</ul>

@@ -1,7 +1,9 @@
 class CitiesController < ApplicationController
     before_filter :city_layout_setup
     before_filter :retrieve_city, :only => [:show, :edit, :update, :destroy]
-    before_filter :retrieve_countries, :only => [:new, :create, :edit, :update]
+    before_filter :retrieve_countries, :only => [:index, :new, :create, :edit, :update]
+
+    layout "city_detail", :only => [:show]
 
     # This filter is used to set the selected tab.
     def city_layout_setup
@@ -35,6 +37,7 @@ class CitiesController < ApplicationController
         # Decide on the return format.
         respond_to do |format|
             format.json { render :json  => @cities }
+            format.html { render }
         end
     end
 

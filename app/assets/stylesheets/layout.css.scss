@@ -4,6 +4,7 @@
 
 .content {
     padding-top: 50px;
+    position: relative;
 }
 
 .nav {
@@ -17,4 +18,10 @@
     .picture-label {
     	padding-left: 38px;
     }
+}
+
+.header-buttons {
+    position: absolute;
+    right: 0;
+    top: 64px;
 }

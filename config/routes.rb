@@ -10,9 +10,13 @@ Purerasmus::Application.routes.draw do
     # Standard controller routes.
     resources :users
     resources :universities
-    resources :cities
+
+    resources :cities do
+        resources :topics
+    end
     
     resources :countries do
+        resources :cities
         resources :universities
     end
 

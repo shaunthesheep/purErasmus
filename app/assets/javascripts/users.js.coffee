@@ -1,13 +1,12 @@
 $ ->
 	# Make sure we are on the right page.
-	if $(".user_edit_form").length == 0
-		return
+	return if $(".user_edit_form").length == 0
 
 	# ----
 	# Add the logic for the "Exchange Student" checkbox.
 	# ----
 
-	# Retrieve the dom elements.
+	# Retrieve the DOM elements.
 	check_is_exchange = $(".cb_is_exchange_student")
 	div_exchange_student_location = $("#exchange_student_location")
 
@@ -31,6 +30,8 @@ $ ->
 	country_dropdowns = $(".country-dropdown")
 	city_dropdowns = $(".city-dropdown")
 
+	additional_option = "Other"
+
 	# Add an event for a selection change on the University dropdowns.
 	country_dropdowns.change ->
 		$this = $(this)
@@ -43,10 +44,10 @@ $ ->
 		university_dropdown = $this.parents(".country-university-group").find(".university-dropdown")
 
 		# Update the city dropdown.
-		update_dropdown("/countries/#{country_id}/cities", city_dropdown)
+		$.helpers.update_dropdown("/countries/#{country_id}/cities", city_dropdown, true, additional_option)
 
 		# Also reset the corresponding university dropdown.
-		reset_dropdown(university_dropdown)
+		$.helpers.reset_dropdown(university_dropdown, additional_option)
 
 	# Add an event for a selection change on the City dropdowns.
 	city_dropdowns.change ->
@@ -59,35 +60,6 @@ $ ->
 		university_dropdown = $this.parents(".country-university-group").find(".university-dropdown")
 	
 		# Update the university dropdown.
-		update_dropdown("/countries/#{city_id}/universities", university_dropdown)
+		$.helpers.update_dropdown("/countries/#{city_id}/universities", university_dropdown, true, additional_option)
 
 	return
-
-# ----
-# Common methods.
-# ----
-
-# Method to update a Dropdown by retrieving a list of values.
-update_dropdown = (url, dropdown_to_update) ->
-	# Make a request to retrieve the universities for the selected country.
-	$.ajax
-		url: url
-		type: "GET"
-		dataType: "json"
-		success: (data) =>
-			# Reset the DropDown.
-			reset_dropdown(dropdown_to_update)
-
-			# Add the retrieved elements.
-			$.each(data, ->
-				dropdown_to_update.append(create_select_option(this.id, this.name))
-			)
-
-# Empty a Dropdown and add the "Other" value.
-reset_dropdown = (dropdown_to_reset) ->
-	dropdown_to_reset.empty()
-	dropdown_to_reset.append(create_select_option(-1, "Other"))
-
-# Method to create the Select Option from a value and a text.
-create_select_option = (value, text) ->
-	$("<option></option>").attr("value", value).text(text)

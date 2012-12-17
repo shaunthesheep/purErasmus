@@ -7,13 +7,13 @@
 
 <hr>
 
-<%= form_for @user, :html => { :class => "form-horizontal" } do |u| %>
+<%= form_for @user, :html => { :class => "form-horizontal" } do |f| %>
 	<%= render :partial => "user_edit", :locals => {
-		:u => u,
+		:f => f,
 		:countries => @countries
 	} %>
 
     <div class="form-actions">
-		<%= u.submit "Save", :class => "btn btn-primary" %>
+		<%= f.submit "Save", :class => "btn btn-primary" %>
 	</div>
 <% end %>
