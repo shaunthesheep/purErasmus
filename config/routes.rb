@@ -28,15 +28,10 @@ Purerasmus::Application.routes.draw do
     resources :users
     resources :universities
     resources :cities
-<<<<<<< HEAD
+
     resources :pages
     resources :sections
 
-
-        
-=======
-    
->>>>>>> 94a21600b3649cc3fa6da8665f780a7b400c2687
     resources :countries do
         resources :universities
     end
