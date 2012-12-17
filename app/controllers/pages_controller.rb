@@ -51,7 +51,7 @@ class PagesController < ApplicationController
         redirect_to university_page_path(@page.university, @page)
       end
     else 
-      render :action => "new"
+      render :action => 'new'
     end
   end
 

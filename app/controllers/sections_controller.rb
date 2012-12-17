@@ -32,7 +32,7 @@ class SectionsController < ApplicationController
         redirect_to university_page_path(@section.page.university, @section.page)
       end
     else 
-      render :action => "new"
+      render :action => 'new'
     end
   end
 
