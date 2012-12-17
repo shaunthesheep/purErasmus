@@ -1,3 +1,6 @@
+
+<!--Index created only to test, is not going to be on working in the final
+web site. The index controller is commented, then is not posible use it-->
 <h2>Pages</h2>
 <% if @pages.empty? %>
 <em> No pages found</em>
@@ -6,7 +9,7 @@
 	<table class="table table-striped">
 		<tr>
 			<th>Title</th>
-			<th>University</th>
+			<th>ID</th>
 			<th></th>
 		</tr>
 <% @pages.each do |page| %>
@@ -19,4 +22,5 @@
 	</table>
 <% end %>
 <br>
-<%= link_to "Add new page", {:action => 'new' }%>
+<%= link_to "Add new page", {:action => 'new' }%><br>
+<%= link_to 'Back', :back %>

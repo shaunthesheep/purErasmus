@@ -1,10 +1,25 @@
-<%= form_for @country do |uForm| %>
-<table>
-	<tr>
-		<td>Name:</td>
-		<td><%= uForm.text_field :name %></td>
-	</tr>
-</table>
-<%= uForm.submit "Update" %><br>
-<%= link_to 'Back', {:action => 'show', :id => @country } %>
+<h1>Edit Country</h1>
+
+<hr />
+
+<p class="text-info">Does this country have any mistake or field outdated? Help us, and feel free to modify it :)</p>
+
+<hr />
+
+<%= form_for @country, :html => { :class => "form-horizontal" } do |u| %>
+
+	<fieldset>
+	    <div class="control-group">
+	        <%= u.label :name, "Name", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :name, :placeholder => "Name" %>
+	        </div>
+	    </div>
+  	</fieldset>
+
+    <div class="form-actions">
+		<%= u.submit "Update", :class => "btn btn-primary" %>
+		<%= link_to "Back", :back, :class => "btn" %>
+	</div>
+
 <% end %>

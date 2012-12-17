@@ -1,37 +1,42 @@
-<h2>Users</h2>
+<h1>Users</h1>
 
+<hr />
+<p class="text-info">Are you looking for another student? Here you can!</p>
+<hr />
 <% if @users.empty? %>
 	<em> No users found</em>
 	<br>
 <% else %> 
-	<table class="table table-striped">
-		<tr>
-			<th>Name</th>
-			<th>Email</th>
-			<th>Home University</th>
-			<th>Foreign University</th>
-		</tr>
-<<<<<<< HEAD
-			<% @users.each do |user| %>
-		<tr>
-			<td><%= link_to user.full_name, user %></td>
-			<td><%= user.email %></td>
-		</tr>
-=======
-		<% @users.each do |user| %>
-			<tr>
-				<td><%= link_to user.full_name, user %></td>
-				<td><%= user.email %></td>
-				
-				<td><%= link_to user.home_university.name_original, user.home_university %></td>
-				<td><%= link_to user.foreign_university.name_original, user.foreign_university %></td>
-					
-			</tr>
-		<% end %>
->>>>>>> 7ed3d0c463b87d5e22cd7a7a892384725b9a3b1b
-	</table>
-<% end %>	
-<% end %>	
-<br>
 
-<%= link_to "Add new user", new_user_path %>
+	<% if @user %>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Home University</th>
+				<th>Foreign University</th>
+			</tr>
+
+			<% @users.each do |user| %>
+				<tr>
+					<td><%= link_to user.full_name, user %></td>
+					<td><a href="mailto:#"><%= user.email %></a></td>
+					<% if user.home_university%>
+						<td><%= link_to user.home_university.name_original, user.home_university %></td>
+					<% else %>
+						<td></td>
+					<% end %>
+					<% if user.foreign_university %>
+						<td><%= link_to user.foreign_university.name_original, user.foreign_university %></td>
+					<% else %>
+						<td></td>
+					<% end %>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>	
+		<em> You should be register to see the list of users </em>
+	<% end %>
+<% end %>	
+<hr />
+<%= link_to "Back", :back, :class => "btn" %>

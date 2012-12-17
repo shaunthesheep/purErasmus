@@ -1,23 +1,17 @@
-<h2>Name: <%= @user.full_name %></h2>
-<h4>Email: <%= @user.email %></h4>
-<% if false %>
-<h4>Home university: <%= link_to @user.home_university.name_original, @user.home_university %> in <%= link_to @user.home_university.city.name, @user.home_university.city %> (<%= link_to @user.home_university.city.country.name, @user.home_university.city.country %>)</h4>
-<h4>Foreign university: <%= link_to @user.foreign_university.name_original, @user.foreign_university %> in <%= link_to @user.foreign_university.city.name, @user.foreign_university.city %> (<%= link_to @user.foreign_university.city.country.name, @user.foreign_university.city.country %>)</h4>
+<h1><%= @user.full_name %></h1>
+<hr />
+<h4><a href="mailto:#">Email: <%= @user.email %></a></h4>
+
+<h4 >Home university: <%if @user.home_university %><%= link_to @user.home_university.name_original, @user.home_university %> in <%= link_to @user.home_university.city.name, @user.home_university.city %> (<%= link_to @user.home_university.city.country.name, @user.home_university.city.country %>)<% end %></h4>
+
+<h4>Foreign university: <% if @user.foreign_university %><%= link_to @user.foreign_university.name_original, @user.foreign_university %> in <%= link_to @user.foreign_university.city.name, @user.foreign_university.city %> (<%= link_to @user.foreign_university.city.country.name, @user.foreign_university.city.country %>)<% end %></h4>
+
+<%if @user == @user_me %>
+	<br>
+	<%= link_to 'Edit profile', {:action => 'edit', :id => @user.id}, :class => "btn" %>
+	<% if false %>
+		<%= link_to "Delete", 	@user, 	:method => :delete, :confirm => "Are you sure you want to delete this user?", :class => "btn" %>
+	<% end %>
 <% end %>
-<%= link_to 'Edit profile', {:action => 'edit', :id => @user.id} %><br>
-<<<<<<< HEAD
-<%= link_to 'Delete profile', {:action => 'destroy', :id => @user.id},
-:confirm => "Are you sure you want to delete this user?" %><br>
-<%= link_to 'Back', {:action => 'index'} %>
-=======
-<%= link_to "Delete", 
-	@user, 
-	:method => :delete,
-<<<<<<< HEAD
-	:confirm => "Are you sure you want to delete this user?" %>
-<%= link_to 'Back', {:action => 'index'} %>
->>>>>>> 70bbc2f99d71760945dc6180b82bfa5f51dd4250
-=======
-	:confirm => "Are you sure you want to delete this user?" %><br>
-<%= link_to 'Back', {:action => 'index'} %>
->>>>>>> 7c8f90e0ff2f3b3afbd62dd8b19b59042f92e294
+<hr />
+<%= link_to 'Back', :back, :class => "btn"%>

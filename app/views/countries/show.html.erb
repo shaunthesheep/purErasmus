@@ -1,20 +1,23 @@
-<h2><%= @country.name %></h2>
+<h1><%= @country.name %></h1>
+<hr />
 <% if @country.cities.empty? %>
 <em> No cities</em>
 <br>
 <% else %> 
-	<table>
+	<ul class="inline">
 <% @country.cities.each do |city| %>
-		<tr>
-			<td><%= link_to city.name, city %></td>
-		</tr>
+			<li><%= link_to city.name, city %></li>
 <% end %>	
-	</table>
+	</ul>
 <% end %>
-<br>
-<%= link_to 'Edit country', {:action => 'edit', :id => @country} %><br>
-<%= link_to "Delete", 
-	@country, 
-	:method => :delete,
-	:confirm => "Are you sure you want to delete this country?" %><br>
-<%= link_to 'Back', {:action => 'index'} %>
+
+<% if @user %>
+	<%= link_to "New city", url_for([:new, :city]), :class => "btn" %><br>
+<% end %>
+<hr />
+<% if @user %>
+	<%= link_to 'Edit country', {:action => 'edit', :id => @country}, :class => "btn btn-primary" %>
+	<%= link_to "Delete", @country, :method => :delete, :confirm => "Are you sure you want to delete this country?", :class => "btn"  %><br>
+<% end %>
+<hr />
+<%= link_to 'Back', :back, :class => "btn" %>

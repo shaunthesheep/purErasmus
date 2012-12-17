@@ -1,15 +1,30 @@
-<%= form_for @section do |uForm| %>
-<table>
-<tr>
-	<td>Title:</td>
-	<td><%= uForm.text_field :title %></td>
-</tr>
-<tr>
-	<td>Description:</td>
-	<td><%= uForm.text_area :description %></td>
-</tr>
-</table>
+<h1>New Section</h1>
 
-<%= uForm.submit "Create" %><br>
-<%= link_to 'Back', {:action => 'index' } %>
+<hr />
+
+<p class="text-info">Add one section to a university page</p>
+
+<hr />
+
+<%= form_for @section, :html => { :class => "form-horizontal" } do |u| %>
+	<fieldset>
+	    <div class="control-group">
+	        <%= u.label :title, "Title", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :title, :placeholder => "Title" %>
+	        </div>
+	    </div>
+
+	    <div class="control-group">
+	        <%= u.label :description, "Description", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_area :description, :placeholder => "Description", :rows =>7  %>
+	        </div>
+	    </div>
+	</fieldset>
+
+    <div class="form-actions">
+		<%= u.submit "Create", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", :back, :class => "btn" %>
+	</div>
 <% end %>
