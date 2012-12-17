@@ -26,16 +26,20 @@ Purerasmus::Application.routes.draw do
 
     # Standard controller routes.
     resources :users
-    resources :universities
-    
-    resources :countries do
+
+	resources :countries do
         resources :cities
         resources :universities
     end
 
     resources :cities do
         resources :pages
-        resources :topics
+
+        # This is used to display the topics in a specific city.
+        resources :topics do
+            # This is used to display the comments in a specific topic.
+            resources :comments
+        end
     end
 
     resources :universities do

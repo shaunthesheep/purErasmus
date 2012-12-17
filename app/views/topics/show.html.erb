@@ -1,0 +1,60 @@
+<ul class="breadcrumb">
+    <li><%= link_to "Main forum" , forums_path %> <span class="divider">/</span></li>
+    <li><%= link_to @city.country.name , forum_path(@city.country) %> <span class="divider">/</span></li>
+    <li><%= link_to @city.name , {:action => 'index'} %> <span class="divider">/</span></li>
+    <li class="active"><%= @topic.title %></h2></li>
+</ul>
+
+<h2><%= @topic.title %></h2>
+<div class="well">
+	<dl class="dl-horizontal">
+		<dt>
+			<%= image_tag @topic.user.gravatar_url, :class => "avatar" %><br>
+	        <span class="picture-label"><%= @topic.user.full_name %></span><br>
+			<%= @topic.created_at %>
+		</dt>
+		<dd><%= @topic.description %></dd>
+	</dl>
+</div>
+	
+	<% if @topic.comments.empty? %>
+		<em> This topic is empty</em>
+		<br>
+	<% else %> 
+		<table>
+		<% @topic.comments.each do |comment| %>
+			<% if (@topic.comments.index(comment)%2 == 0) %>
+				<div class="well odd-well">
+			<% else %>
+				<div class="well even-well">
+			<% end %>
+			<a id="comment<%= comment.id %>"></a>
+			<dl class="dl-horizontal">
+				<dt>
+                    <%= image_tag comment.user.gravatar_url, :class => "avatar" %><br>
+                    <span class="picture-label"><%= comment.user.full_name %></span><br>
+					<%= comment.created_at %>
+				</dt>
+				<dd>
+					<%= comment.description %>
+				</dd>
+			</dl>
+			</div>
+		<% end %>	
+		</table>
+	<% end %>
+
+
+<br>
+<% if @user %>
+	<%= form_for  ([@city, @topic, @comment]) do |uForm| %>
+	<dl class="dl-horizontal"><dt>Quick reply:</dt>
+		<dd><%= uForm.text_area(:description, :size => "50x10")%></dd>
+	<%= link_to "Back", :back, :class => "btn" %>
+	<%= uForm.submit "Submit", {:class => "btn btn-primary"} %><br>
+	<% end %>
+<% else %>
+<p> You must be logged in to add comments </p>
+<%= link_to "Back", :back, :class => "btn" %>
+<% end %>
+
