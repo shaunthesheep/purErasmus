@@ -44,6 +44,7 @@ Purerasmus::Application.routes.draw do
         end
     end
 
+	resources :countries do
         resources :universities
     end
 
