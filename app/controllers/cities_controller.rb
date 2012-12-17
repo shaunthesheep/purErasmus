@@ -8,6 +8,7 @@ class CitiesController < ApplicationController
     # This filter is used to set the selected tab.
     def city_layout_setup
         @tab = :city
+        @parent_tab = :universities
     end
 
     # This filter retrieves a city from its Id.
@@ -24,7 +25,6 @@ class CitiesController < ApplicationController
     # GET /countries/:country_id/cities
     # Action method to retrieve a list of cities. Can be returned in multiple formats.
     def index
-        @user = retrieve_authenticated_user
         country_id = params[:country_id]
 
         # If we have countryId, return only the cities for the specified country.
@@ -45,15 +45,7 @@ class CitiesController < ApplicationController
     # GET /cities/:id
     # Action method to display detailed information about a specific city.
     def show
-        @city = City.find(params[:id])
-        @user = retrieve_authenticated_user
-        page_id = params[:page_id]
-        if (page_id)
-            @page = Page.find(page_id)
-        else
-            @page = @city.pages.first
-        end
-   end
+    end
 
     # GET /cities/:id/edit
     # Action method to edit a specific city.

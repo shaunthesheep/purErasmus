@@ -1,3 +1,12 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.page-input {
+	display: none;
+}
+
+.page-editor-container {
+	width: 100%;
+	height: 400px;
+	#page-editor {
+		width: 100%;
+		height: 400px;
+	}
+}

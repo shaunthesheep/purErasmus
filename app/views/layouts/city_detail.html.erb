@@ -18,6 +18,7 @@
 
     <!-- Administration panel, visible only to administrator -->
     <div class="city-buttons">
+        <%= link_to "Add Page", new_city_page_path(@city), :class => "btn" %>
         <%= link_to "Edit", edit_city_path(@city), :class => "btn" %>
         <%= link_to "Delete", @city, 
             :class => "btn btn-danger",
@@ -25,26 +26,50 @@
             :confirm => "Are you sure you want to delete this city?" %>
     </div>
 
-    <div class="tabbable tabs-left city-content">
+    <% if @parent_tab %>
 
-        <!-- Navigation -->
-        <ul class="nav nav-tabs">
-            <li class="active"><%= link_to "Universities", @city %></li>
-            <li><%= link_to "Forum", city_topics_path(@city) %></li>
-        </ul>
+        <div class="tabbable tabs-left city-content">
 
-        <!-- Page content -->
-        <div class="tab-content">  
+            <!-- Navigation -->
+            <ul class="nav nav-tabs">
+                <li<%= raw(' class="active"') if @parent_tab == :universities %>>
+                    <%= link_to "Universities", @city %>
+                </li>
+
+                <!-- Add a tab for each page -->
+                <% @city.pages.each do |page| %>
+                    <li<%= raw(' class="active"') if @parent_tab == :page and @page.id == page.id %>>
+                        <%= link_to page.title, city_page_path(@city, page) %>
+                    </li>
+                <% end %>
+
+                <li<%= raw(' class="active"') if @parent_tab == :forum %>>
+                    <%= link_to "Forum", city_topics_path(@city) %>
+                </li>
+            </ul>
+
+            <!-- Page content -->
+            <div class="tab-content">  
+
+                <%= content_for?(:city_detail_content) ? yield(:city_detail_content) : yield %>
+                
+            </div>
+
+        </div>
+
+    <% else %>
+
+        <div class="city-bare-content">
             <%= content_for?(:city_detail_content) ? yield(:city_detail_content) : yield %>
         </div>
 
-    </div>
+    <% end %>
 
     <ul class="breadcrumb">
         <li><%= link_to "Home", root_url %> <span class="divider">/</span></li>
         <li><%= link_to "Cities", cities_path %> <span class="divider">/</span></li>
         <%= content_for?(:city_breadcrumbs) ? yield(:city_breadcrumbs) : yield %>
     </ul>
-    
+
 <% end %>
 <%= render :template => "layouts/application" %>
