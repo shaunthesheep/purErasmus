@@ -1,10 +1,12 @@
 class CountriesController < ApplicationController
 
  def index
+    @user = retrieve_authenticated_user
     @countries = Country.all
   end
 
   def show
+    @user = retrieve_authenticated_user
   	@country = Country.find(params[:id])
   end
 
@@ -23,7 +25,7 @@ class CountriesController < ApplicationController
   def create
     @country = Country.new(params[:country])
     if @country.save
-      redirect_to :action => "index"
+      redirect_to country_path(@coutry)
     else 
       render :action => "new"
     end
@@ -32,7 +34,7 @@ class CountriesController < ApplicationController
   def update
      @country = Country.find(params[:id])
      if @country.update_attributes(params[:country])
-        redirect_to :action => 'show', :id => @country
+        redirect_to country_path(@country)
      else
         render :action => 'edit'
      end
@@ -40,7 +42,7 @@ class CountriesController < ApplicationController
 
   def destroy
       Country.find(params[:id]).destroy
-      redirect_to :action => 'index'
+      redirect_to countries_path
    end
 
 end

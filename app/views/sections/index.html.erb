@@ -1,3 +1,5 @@
+<!--Index created only to test, is not going to be on working in the final
+web site. The index controller is commented, then is not posible use it-->
 <h2>Sections</h2>
 <% if @sections.empty? %>
 <em> No sections found</em>
@@ -19,4 +21,5 @@
 	</table>
 <% end %>
 <br>
-<%= link_to "Add new section", {:action => 'new' }%>
+<%= link_to "Add new section", {:action => 'new' }%><br>
+<%= link_to 'Back', :back %>

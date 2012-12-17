@@ -1,38 +1,74 @@
-<h2><%= @university.name_original %></h2>
+<h1><%= @university.name_original %></h1>
+<hr />
 <h4>Name (English): <%= @university.name_english %></h4>
-<h4>Website: <%= @university.website %></h4>
+<h4>Website: <a href><%= @university.website %></a></h4>
 <h4>Contact: <%= @university.contact %></h4>
-<h4>City: <%= link_to @university.city.name, @university.city %> (<%= link_to @university.city.country.name, @university.city.country %>)</h4>
+
+<h4>City: <% if @university.city %><%= link_to @university.city.name, @university.city %> ( <%= link_to @university.city.country.name, @university.city.country %>)<% end %></h4>
+ 
+<hr />
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span2">
 
 <br>
 
 <h4>List of Pages</h4>
 
 <% if @university.pages.empty? %>
-
-    <em> No Pages</em>
-    <br>
-
+<em> No Pages</em>
+<h5><% if @user %><%= link_to "New Page", url_for([:new, @university, :page]), :class => "btn" %><% end %></h5>
+ </div>
+</div>
+</div>
+<br>
 <% else %> 
+<lu>
+<% @university.pages.each do |page| %>
+	<li><%= link_to page.title,  url_for([@university, page]) %></li>
+<% end %>	
+</lu>
+<br>
+<h5><% if @user %><%= link_to "New Page", url_for([:new, @university, :page]), :class => "btn" %><% end %></h5>
 
-    <% @university.page.each do |page| %>
-        <%= link_to university.pages.title, university.pages %>
-    <% end %>   
+ </div>
+<div class="span10">
 
-    <br>
+<h2><%= @page.title %><% if @user %>    <%= link_to "(Edit)", url_for([:edit, @university, @page]) %>    <%= link_to "(Delete)", @page, 
+	:method => :delete,
+	:confirm => "Are you sure you want to delete this page?" %><%end%><br></h2>
+<h4><%= @page.body %></h4>
+<hr />
+<h3>List of Sections<%if @user %>     - <%= link_to "New Section", new_university_page_section_path(@university, @page), :class => "btn" %><% end %></h3>
+<% if @page.sections.empty? %>
+<em> No Sections</em>
+<br>
+<% else %>
 
+<dl >
+<% @page.sections.each do |section| %>
+	<h4><dt> ·  <%= section.title %><% if @user %>     <%= link_to "(Edit)", url_for([:edit, @university, @page, section]) %>     <%= link_to "(Delete)", section, 
+	:method => :delete,
+	:confirm => "Are you sure you want to delete this section?" %><% end %><br></dt></h4>
+	<h6><dd><%= section.description %></dd></h6>
+	<br>
+<% end %>
+</dl>
 <% end %>
 
-<%= link_to "New Page", {new_page_path, :university_id => @university.id} %><br>
+ </div>
+</div>
+</div>
 
+<% end %>
+<hr />
+
+<% if @user %>
 <br>
-
-<%= link_to "Edit profile", edit_university_path(@university) %><br>
-<%= link_to "Delete", 
-    @university, 
-    :method => :delete,
-    :confirm => "Are you sure you want to delete this university?" %>
-
+<%= link_to 'Edit university', edit_university_path(@university), :class => "btn" %>
+<%= link_to "Delete", @university, :method => :delete, :confirm => "Are you sure you want to delete this university?", :class => "btn" %>
 <br>
+<hr />
+<% end %>
 
-<%= link_to "Back", universities_path %>
+<%= link_to 'Back', :back, :class => "btn" %>

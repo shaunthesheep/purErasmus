@@ -1,20 +1,22 @@
-<h2>Cities</h2>
+<h1>Cities</h1>
+
+<hr />
+<p class="text-info">Are you looking for any city? Here you can!</p>
+<hr />
 <% if @cities.empty? %>
 <em> No cities found</em>
 <br>
 <% else %> 
-	<table class="table table-striped">
-		<tr>
-			<th>Name</th>
-			<th>Country</th>
-		</tr>
-<% @cities.each do |city| %>
-		<tr>
-			<td><%= link_to city.name, city %></td>
-			<td><%= link_to city.country.name, city.country %></td>
-		</tr>
-<% end %>	
-	</table>
+<ul class="inline">
+	<% @cities.each do |city| %>
+		<li><%= link_to city.name, city %>( <%= link_to city.country.name, city.country %>)</li>
+	<% end %>	
+</ul>
 <% end %>
+
+<% if @user %>
 <br>
-<%= link_to "Add new city", {:action => 'new' }%>
+	<%= link_to "Add new city", {:action => 'new' }, :class => "btn"%><br>
+	<hr />
+<% end %>
+<%= link_to "Back", :back, :class => "btn" %>

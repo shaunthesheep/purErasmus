@@ -1,26 +1,53 @@
-<%= form_for @university do |uForm| %>
-<table>
-<tr>
-	<td>Name:</td>
-	<td><%= uForm.text_field :name_original %></td>
-</tr>
-<tr>
-	<td>Name (english):</td>
-	<td><%= uForm.text_field :name_english %></td>
-</tr>
-<tr>
-	<td>Website:</td>
-	<td><%= uForm.text_field :website %></td>
-</tr>
-<tr>
-	<td>Contact:</td>
-	<td><%= uForm.text_field :contact %></td>
-</tr>
-<tr>
-	<td>City:</td>
-	<td><%= uForm.select :city_id, @cities %></td> 
-</tr>
-</table>
-<%= uForm.submit "Create" %><br>
-<%= link_to 'Back', {:action => 'index' } %>
+<h1>New University</h1>
+
+<hr />
+
+<p class="text-info">If your university do not exist, come on! help us to create it!</p>
+
+<hr />
+
+<%= form_for @university, :html => { :class => "form-horizontal" } do |u| %>
+
+	<fieldset>
+	    <div class="control-group">
+	        <%= u.label :name_original, "Original name", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :name_original, :placeholder => "Original name" %>
+	        </div>
+	    </div>
+
+	    <div class="control-group">
+	        <%= u.label :name_english, "English name", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :name_english, :placeholder => "English name" %>
+	        </div>
+	    </div>
+
+	    <div class="control-group">
+	        <%= u.label :website, "Website", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :website, :placeholder => "Website" %>
+	        </div>
+	    </div>
+
+	    <div class="control-group">
+	        <%= u.label :contact, "Contact", :class => "control-label" %>
+	        <div class="controls">
+	            <%= u.text_field :contact, :placeholder => "Contact" %>
+	        </div>
+	    </div>
+
+		<div class="control-group">
+		     <%= u.label :city_id, "City", :class => "control-label" %>
+		    <div class="controls">
+		        <%= u.select :city_id, [["Select one", -1]].concat(@cities), :class => "city-dropdown" %>
+		    </div>
+		</div>
+  	</fieldset>
+
+    <div class="form-actions">
+		<%= u.submit "Create", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", :back, :class => "btn" %>
+	</div>
+
 <% end %>

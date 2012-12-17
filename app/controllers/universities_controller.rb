@@ -6,6 +6,7 @@ class UniversitiesController < ApplicationController
     def index
         country_id = params[:country_id]
         city_id = params[:city_id]
+        @user = retrieve_authenticated_user
 
         # If we have a countryId, return only the universities for the specified country.
         if (country_id)
@@ -15,7 +16,12 @@ class UniversitiesController < ApplicationController
             @universities = City.find(city_id).universities
         # Otherwise, return all the universities.
         else
-            @universities = University.all
+            if (city_id)
+                @universities = City.find(city_id).universities
+        # Otherwise, return all the universities.
+            else
+                @universities = University.all
+            end
         end
 
         # Decide on the return format.
@@ -27,8 +33,15 @@ class UniversitiesController < ApplicationController
     # GET /universities/:id
     # Action method to display a specific university.
     def show
-        @university = University.find(params[:id]) 
-        @pages = Page.all
+        page_id = params[:page_id]
+        @user = retrieve_authenticated_user
+        @university = University.find(params[:id])
+        if (page_id)
+            @page = Page.find(page_id)
+        else
+            @page = @university.pages.first
+        end
+
     end
 
     # GET /universities/new
@@ -50,7 +63,7 @@ class UniversitiesController < ApplicationController
     def create
         @university = University.new(params[:university])
         if @university.save
-            redirect_to universities_path
+            redirect_to university_path(@university)
         else 
             render "new"
         end
@@ -61,7 +74,7 @@ class UniversitiesController < ApplicationController
     def update
         @university = University.find(params[:id])
         if @university.update_attributes(params[:university])
-            redirect_to @university
+            redirect_to university_path(@university)
         else
             render "edit"
         end

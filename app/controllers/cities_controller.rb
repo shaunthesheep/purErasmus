@@ -22,6 +22,7 @@ class CitiesController < ApplicationController
     # GET /countries/:country_id/cities
     # Action method to retrieve a list of cities. Can be returned in multiple formats.
     def index
+        @user = retrieve_authenticated_user
         country_id = params[:country_id]
 
         # If we have countryId, return only the cities for the specified country.
@@ -33,15 +34,23 @@ class CitiesController < ApplicationController
         end
 
         # Decide on the return format.
-        respond_to do |format|
-            format.json { render :json  => @cities }
-        end
+        #respond_to do |format|
+        #    format.json { render :json  => @cities }
+        #end
     end
 
     # GET /cities/:id
     # Action method to display detailed information about a specific city.
     def show
-    end
+        @city = City.find(params[:id])
+        @user = retrieve_authenticated_user
+        page_id = params[:page_id]
+        if (page_id)
+            @page = Page.find(page_id)
+        else
+            @page = @city.pages.first
+        end
+   end
 
     # GET /cities/:id/edit
     # Action method to edit a specific city.
@@ -76,7 +85,7 @@ class CitiesController < ApplicationController
             redirect_to @city, :notice => {
                 :message => "City " + @city.name + " was updated."
             }
-        else
+       else
             render "edit"
         end
     end
