@@ -22,7 +22,6 @@ class PagesController < ApplicationController
     # Before filter to retrieve the current page.
     def retrieve_page
         @page = Page.find(params[:id])
-        @parent_tab = :page
     end
 
     # Method to choose the layout to use.
@@ -34,6 +33,7 @@ class PagesController < ApplicationController
     # GET /universities/:university_id/pages/:id
     # Action method to display a specific page, for a city or a university.
     def show
+        @parent_tab = :page
         @md_body = RDiscount.new(@page.body).to_html
     end
     

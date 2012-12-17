@@ -18,6 +18,13 @@
 
     <!-- Administration panel, visible only to administrator -->
     <div class="city-buttons">
+        <% if @parent_tab == :page %>
+            <%= link_to "Edit page", edit_city_page_path(@city, @page), :class => "btn" %>
+            <%= link_to "Delete page", city_page_path(@city, @page), :method => :delete, :class => "btn btn-danger" %>
+            <div class="button-separator">
+                <div></div>
+            </div>
+        <% end %>
         <%= link_to "Add Page", new_city_page_path(@city), :class => "btn" %>
         <%= link_to "Edit", edit_city_path(@city), :class => "btn" %>
         <%= link_to "Delete", @city, 

@@ -13,19 +13,10 @@
 <hr>
 
 <%= form_for [@city ? @city : @university, @page] do |f| %>
-	<fieldset>
-        <%= f.label :title, "Title", :class => "control-label" %>
-        <%= f.text_field :title, :class => "input-xlarge", :placeholder => "Title" %>
-
-        <%= f.label :body, "Body", :class => "control-label" %>
-
-        <div class="page-editor-container">
-			<div id="page-editor"></div>
-		</div>
-
-        <%= f.text_area :body, :placeholder => "Body", :class => "page-input" %>
-	</fieldset>
-
+	<%= render :partial => "edit_page", :locals => {
+		:f => f
+	} %>
+	
     <div class="form-actions">
 		<%= f.submit "Create", :class => "btn btn-primary" %>
 		<%= link_to "Cancel", @city ? @city : @university, :class => "btn" %>

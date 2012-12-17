@@ -1,0 +1,12 @@
+<fieldset>
+    <%= f.label :title, "Title", :class => "control-label" %>
+    <%= f.text_field :title, :class => "input-xlarge", :placeholder => "Title" %>
+
+    <%= f.label :body, "Body", :class => "control-label" %>
+
+    <div class="page-editor-container">
+        <div id="page-editor"></div>
+    </div>
+
+    <%= f.text_area :body, :placeholder => "Body", :class => "page-input" %>
+</fieldset>
