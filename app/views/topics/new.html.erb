@@ -11,7 +11,10 @@
 	<td><%= t.text_area(:description, :cols => 60, :rows => 5 ) %></td>
 </tr>
 </table>
-<%= t.submit "Create", {:city_id => @city.id}  %><br>
 
-<%= link_to 'Back', {:action => 'index' } %>
+<%= link_to "Back", :back, :class => "btn" %>
+<%= t.submit "Create", {:city_id => @city.id, :class => "btn btn-primary"}  %><br>
+
+
+
 <% end %>

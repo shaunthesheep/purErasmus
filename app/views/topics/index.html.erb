@@ -15,22 +15,38 @@
 
 <div>
 	<div class="well">
-		<table class="table">
+		
+		<!-- IN CASE NO TOPICS -->
 		<% if @city.topics.empty? %>
-			<tr>
-				<h4> No topics found </h4>
-			</tr>
+			<h4> No topics found </h4>
+
+		<!-- IN CASE TOPICS -->
 		<% else %>
-			<tr> <h3><strong> Topics </strong></h3> </tr>
+			<h3><strong> Topics </strong></h3>
+			<table class="table">
+				<tr>
+					<th> Subject </th> 
+					<th> Answers </th>
+					<th> Last message </th>
+				</tr>
 			<% @topics.each do |topic| %>
 				<a id="topic<%= topic.id %>"></a>
-				<tr><td>
-					<p><%= link_to topic.title , {:action => 'show', :id => topic} %></p>
-					<small><blockquote class="pull-right">by <%= topic.user.full_name %>, at <%= topic.created_at %></blockquote></small>
-				</td></tr>
+				<tr>
+					<td>
+						<%= link_to topic.title , {:action => 'show', :id => topic} %>
+						by <%= topic.user.full_name %>, at <%= topic.created_at %>
+					</td>
+					<td> <%= topic.comments.size %> </td>
+					<% if !topic.comments.empty? %>
+						<td> <%= topic.comments.last.user.full_name %> at <%= topic.comments.last.created_at %> </td>
+					<% else %>
+						<td> No answers yet </td>
+					<% end %>
+				</tr>
 			<% end %>
+			</table>
 		<% end %>
-		</table>
+		
 	</div>
 </div>
 <div>
