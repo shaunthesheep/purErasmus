@@ -1,7 +1,3 @@
-// Place all the styles related to the topics controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .avatar {
     width: 30px;
     height: 30px;
@@ -18,4 +14,9 @@
     padding-right: 10px;
 }
 
-
+.topics-table {
+	p {
+		padding: 0;
+		margin: 0;
+	}
+}

@@ -1,59 +1,54 @@
-<ul class="breadcrumb">
-    <li><%= link_to "Main forum" , forums_path %> <span class="divider">/</span></li>
-    <li><%= link_to @city.country.name , forum_path(@city.country) %> <span class="divider">/</span></li>
-    <li class="active"><%= @city.name %></h2></li>
+<% if @city then content_for :city_breadcrumbs do %>
+    <li><%= link_to @city.name, @city %> <span class="divider">/</span></li>
+    <li class="active">Forum</li>
+<% end end %>
 
-<blockquote class="pull-right"><div>
-	<% if @user %>
-		<p><%= link_to "Add new topic", new_city_topic_path(@city.id) %></p>
-	<% end %>
+<h4>Forum</h4>
+
+<hr>
+
+<div class="right-buttons">
+    <%= link_to "Create a new topic", new_city_topic_path(@city), :class => "btn" %>
 </div>
-</blockquote>
 
-</ul>
+<!-- IN CASE NO TOPICS -->
+<% if @city.topics.empty? %>
+    <h4> No topics found </h4>
 
+<!-- IN CASE TOPICS -->
+<% else %>
 
-<div>
-	<div class="well">
-		
-		<!-- IN CASE NO TOPICS -->
-		<% if @city.topics.empty? %>
-			<h4> No topics found </h4>
+    <table class="table table-bordered topics-table">
+        <thead>
+            <tr>
+                <th>Subject</th> 
+                <th>Answers</th>
+                <th>Last message</th>
+            </tr>
+        </thead>
+        <tbody>
 
-		<!-- IN CASE TOPICS -->
-		<% else %>
-			<h3><strong> Topics </strong></h3>
-			<table class="table">
-				<tr>
-					<th> Subject </th> 
-					<th> Answers </th>
-					<th> Last message </th>
-				</tr>
-			<% @topics.each do |topic| %>
-				<a id="topic<%= topic.id %>"></a>
-				<tr>
-					<td>
-						<%= link_to topic.title , {:action => 'show', :id => topic} %>
-						by <%= topic.user.full_name %>, at <%= topic.created_at %>
-					</td>
-					<td> <%= topic.comments.size %> </td>
-					<% if !topic.comments.empty? %>
-						<td> <%= topic.comments.last.user.full_name %> at <%= topic.comments.last.created_at %> </td>
-					<% else %>
-						<td> No answers yet </td>
-					<% end %>
-				</tr>
-			<% end %>
-			</table>
-		<% end %>
-		
-	</div>
-</div>
-<div>
-	<% if @user %>
-		<%= link_to "Add new topic", new_city_topic_path(@city.id) %>
-	<% end %>
-</div>
-<div>
-	<%= link_to "back" , forum_path(@city.country) %>
-</div>
+            <% @topics.each do |topic| %>
+                <a id="topic<%= topic.id %>"></a>
+                <tr>
+                    <td>
+                        <p><%= link_to topic.title, city_topic_path(@city, topic) %></p>
+                        <p><em>by <%= topic.user.full_name %>, at <%= topic.created_at %></em></p>
+                    </td>
+                    <td>
+                        <%= topic.comments.size %>
+                    </td>
+                    <td>
+                        <% if !topic.comments.empty? %>
+                            <%= topic.comments.last.user.full_name %> at <%= topic.comments.last.created_at %>
+                        <% else %>
+                            No answers yet
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+
+        </tbody>
+    </table>
+
+<% end %>

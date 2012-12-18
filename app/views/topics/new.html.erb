@@ -1,20 +1,38 @@
-<%= form_for ([@city, @topic]) do |t| %>
-<h3>Create new topic</h3>
+<% if @city then content_for :city_breadcrumbs do %>
+    <li><%= link_to @city.name, @city %> <span class="divider">/</span></li
+    <li><%= link_to "Forum", city_topics_path(@city) %> <span class="divider">/</span></li>    
+    <li class="active">Create a new topic</li>
+<% end end %>
 
-<table>
-<tr>
-	<td>Title:</td>
-	<td><%= t.text_field(:title, :cols => 60) %></td>
-</tr>
-<tr>
-	<td>Description:</td>
-	<td><%= t.text_area(:description, :cols => 60, :rows => 5 ) %></td>
-</tr>
-</table>
+<h4>Create a new topic</h4>
 
-<%= link_to "Back", :back, :class => "btn" %>
-<%= t.submit "Create", {:city_id => @city.id, :class => "btn btn-primary"}  %><br>
+<hr>
 
+<%= form_for ([@city, @topic]), :html => { :class => "form-horizontal" } do |f| %>
 
+    <fieldset>
+
+        <!-- Title -->
+        <div class="control-group">
+            <%= f.label :title, "Title", :class => "control-label" %>
+            <div class="controls">
+                <%= f.text_field :title, :placeholder => "Title" %>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="control-group">
+            <%= f.label :description, "Content", :class => "control-label" %>
+            <div class="controls">
+                <%= f.text_area :description, :placeholder => "Content", :class => "input-xxlarge", :rows => 10 %>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <div class="form-actions">
+        <%= f.submit "Create", :class => "btn btn-primary" %>
+        <%= link_to "Cancel", city_topics_path(@city), :class => "btn" %>
+    </div>
 
 <% end %>

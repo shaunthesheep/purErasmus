@@ -75,7 +75,7 @@
     <ul class="breadcrumb">
         <li><%= link_to "Home", root_url %> <span class="divider">/</span></li>
         <li><%= link_to "Cities", cities_path %> <span class="divider">/</span></li>
-        <%= content_for?(:city_breadcrumbs) ? yield(:city_breadcrumbs) : yield %>
+        <%= yield(:city_breadcrumbs) if content_for?(:city_breadcrumbs) %>
     </ul>
 
 <% end %>
