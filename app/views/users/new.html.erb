@@ -8,14 +8,14 @@
 <hr>
 
 
-<%= form_for @user, :html => { :class => "form-horizontal" } do |u| %>
+<%= form_for @user, :html => { :class => "form-horizontal" } do |f| %>
 	<%= render :partial => "user_edit", :locals => {
-		:u => u,
+		:f => f,
 		:countries => @countries
 	} %>
 
     <div class="form-actions">
-		<%= u.submit "Register", :class => "btn btn-primary" %>
+		<%= f.submit "Register", :class => "btn btn-primary" %>
 		<%= link_to "Cancel", root_url, :class => "btn" %>
 	</div>
 <% end %>
