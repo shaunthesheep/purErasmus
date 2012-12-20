@@ -44,7 +44,7 @@ $ ->
 		university_dropdown = $this.parents(".country-university-group").find(".university-dropdown")
 
 		# Update the city dropdown.
-		$.helpers.update_dropdown("/countries/#{country_id}/cities", city_dropdown, true, additional_option)
+		$.helpers.update_dropdown_cities("/countries/#{country_id}/cities", city_dropdown, true, additional_option)
 
 		# Also reset the corresponding university dropdown.
 		$.helpers.reset_dropdown(university_dropdown, additional_option)
@@ -60,6 +60,6 @@ $ ->
 		university_dropdown = $this.parents(".country-university-group").find(".university-dropdown")
 	
 		# Update the university dropdown.
-		$.helpers.update_dropdown("/countries/#{city_id}/universities", university_dropdown, true, additional_option)
+		$.helpers.update_dropdown_universities("/cities/#{city_id}/universities", university_dropdown, true, additional_option)
 
 	return

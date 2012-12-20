@@ -41,6 +41,8 @@ Purerasmus::Application.routes.draw do
             # This is used to display the comments in a specific topic.
             resources :comments
         end
+
+        resources :universities
     end
 
     resources :universities do

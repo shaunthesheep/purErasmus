@@ -2,6 +2,7 @@ class UniversitiesController < ApplicationController
 
     # GET /universities
     # GET /countries/:country_id/universities
+    # GET /cities/:city_id/universities
     # Action method to retrieve a list of universities. Can be returned in multiple formats.
     def index
         country_id = params[:country_id]
@@ -16,18 +17,14 @@ class UniversitiesController < ApplicationController
             @universities = City.find(city_id).universities
         # Otherwise, return all the universities.
         else
-            if (city_id)
-                @universities = City.find(city_id).universities
-        # Otherwise, return all the universities.
-            else
-                @universities = University.all
-            end
+            @universities = University.all
         end
 
         # Decide on the return format.
-        #respond_to do |format|
-        #    format.json { render :json => @universities }
-        #end
+        respond_to do |format|
+            format.json { render :json => @universities }
+            format.html { render }
+        end
     end
 
     # GET /universities/:id

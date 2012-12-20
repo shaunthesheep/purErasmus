@@ -5,7 +5,7 @@
 $.helpers = {}
 
 # Method to update a Dropdown by retrieving a list of values.
-$.helpers.update_dropdown = (url, dropdown_to_update, after, additional_option) ->
+$.helpers.update_dropdown = (url, dropdown_to_update, after, additional_option, displayColumn) ->
     # Make a request to retrieve the universities for the selected country.
     $.ajax
         url: url
@@ -17,11 +17,22 @@ $.helpers.update_dropdown = (url, dropdown_to_update, after, additional_option) 
 
             # Add the retrieved elements.
             $.each(data, ->
-                if (after)
-                    dropdown_to_update.append($.helpers.create_select_option(this.id, this.name))
+                if displayColumn == "city"
+                    value = this.name
                 else
-                    dropdown_to_update.prepend($.helpers.create_select_option(this.id, this.name))                    
+                    value = this.name_english
+                
+                if (after)
+                    dropdown_to_update.append($.helpers.create_select_option(this.id, value))
+                else
+                    dropdown_to_update.prepend($.helpers.create_select_option(this.id, value))                  
             )
+
+$.helpers.update_dropdown_cities = (url, dropdown_to_update, after, additional_option) ->
+    $.helpers.update_dropdown(url, dropdown_to_update, after, additional_option, "city")
+
+$.helpers.update_dropdown_universities = (url, dropdown_to_update, after, additional_option) ->
+    $.helpers.update_dropdown(url, dropdown_to_update, after, additional_option, "university")
 
 # Empty a Dropdown and add the "Other" value.
 $.helpers.reset_dropdown = (dropdown_to_reset, additional_option) ->
