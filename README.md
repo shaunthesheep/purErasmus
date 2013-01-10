@@ -1,4 +1,4 @@
-#purErasmus
+#PurErasmus
 ==========
 
 Project Software Engineering at SDU
