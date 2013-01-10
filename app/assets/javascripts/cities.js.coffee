@@ -25,7 +25,7 @@ $ ->
             city_dropdown.prop("disabled", false)
 
             # Update the city dropdown accordingly using helper methods.
-            $.helpers.update_dropdown("/countries/#{country_id}/cities", city_dropdown, true, default_city_text)
+            $.helpers.update_dropdown_cities("/countries/#{country_id}/cities", city_dropdown, true, default_city_text)
 
     # Ass an event for a selection change on the City Dropdown.
     city_dropdown.change ->
