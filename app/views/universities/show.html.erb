@@ -1,3 +1,8 @@
+<% content_for :university_breadcrumbs do %>
+	<li class="active"><%= @university.name_original %></li>
+<% end %>
+
+<% if false %>
 <h1><%= @university.name_original %></h1>
 <hr />
 <h4>Name (English): <%= @university.name_english %></h4>
@@ -72,3 +77,4 @@
 <% end %>
 
 <%= link_to 'Back', :back, :class => "btn" %>
+<% end %>

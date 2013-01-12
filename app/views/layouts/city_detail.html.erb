@@ -1,6 +1,6 @@
 <% content_for :content do %>
 
-    <div class="city-info">
+    <div class="item-info">
         <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= @city.name %>,<%= @city.country.name %>&zoom=10&size=470x280&sensor=false">
         <div class="gradient"></div>
         <div class="info">
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Administration panel, visible only to administrator -->
-    <div class="city-buttons">
+    <div class="item-buttons">
         <% if @parent_tab == :page %>
             <%= link_to "Edit page", edit_city_page_path(@city, @page), :class => "btn" %>
             <%= link_to "Delete page", city_page_path(@city, @page), :method => :delete, :class => "btn btn-danger" %>
@@ -35,7 +35,7 @@
 
     <% if @parent_tab %>
 
-        <div class="tabbable tabs-left city-content">
+        <div class="tabbable tabs-left item-content">
 
             <!-- Navigation -->
             <ul class="nav nav-tabs">
@@ -66,7 +66,7 @@
 
     <% else %>
 
-        <div class="city-bare-content">
+        <div class="item-bare-content">
             <%= content_for?(:city_detail_content) ? yield(:city_detail_content) : yield %>
         </div>
 

@@ -1,4 +1,15 @@
+require "net/http"
+require "uri"
+
 class UniversitiesController < ApplicationController
+    before_filter :city_layout_setup
+
+    layout "university_detail", :only => [:show]
+
+    # This filter is used to set the selected tab.
+    def city_layout_setup
+        @tab = :university
+    end
 
     # GET /universities
     # GET /countries/:country_id/universities
@@ -38,7 +49,6 @@ class UniversitiesController < ApplicationController
         else
             @page = @university.pages.first
         end
-
     end
 
     # GET /universities/new
@@ -83,6 +93,29 @@ class UniversitiesController < ApplicationController
         @university = University.find(params[:id])
         @university.destroy
         redirect_to universities_path
+    end
+
+    # GET /universities/:id/photo
+    def photo
+        @university = University.find(params[:id])
+
+        query = URI.encode("#{@university.name_original} #{@university.city.name} #{@university.city.country.name}")
+        api_key = "AIzaSyAWyCseSbFQ2MckF9Dj0M0FyJlydtcTYIM"
+        uri = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{query}&key=#{api_key}&sensor=false"
+
+        res = dorequest(uri)
+        render :text => res.body
+    end
+
+    def dorequest (url)
+        uri = URI.parse(url)
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Get.new(uri.request_uri)
+
+        http.request(request)
     end
 
 end

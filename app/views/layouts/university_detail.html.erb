@@ -1,0 +1,75 @@
+<% content_for :content do %>
+
+    <div class="item-info">
+        <div class="hidden university-id" data-id="<%= @university.id %>"></div>
+        <div class="gradient"></div>
+        <div class="info">
+            <div class="info-cell">
+                <div>
+                    <h1><%= @university.name_original %><h1>
+                    <h2><%= link_to @university.city.name, @university.city %>, <%= link_to @university.city.country.name, @university.city.country %></h2>
+                </div>
+                <div class="description">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Administration panel, visible only to administrator -->
+    <div class="item-buttons">
+        <% if @parent_tab == :page %>
+            <%= link_to "Edit page", edit_university_page_path(@university, @page), :class => "btn" %>
+            <%= link_to "Delete page", university_page_path(@university, @page), :method => :delete, :class => "btn btn-danger" %>
+            <div class="button-separator">
+                <div></div>
+            </div>
+        <% end %>
+        <%= link_to "Add Page", new_university_page_path(@university), :class => "btn" %>
+        <%= link_to "Edit", edit_university_path(@university), :class => "btn" %>
+        <%= link_to "Delete", @city, 
+            :class => "btn btn-danger",
+            :method => :delete,
+            :confirm => "Are you sure you want to delete this university?" %>
+    </div>
+
+    <% if @parent_tab %>
+
+        <div class="tabbable tabs-left item-content">
+
+            <!-- Navigation -->
+            <ul class="nav nav-tabs">
+
+                <!-- Add a tab for each page -->
+                <% @university.pages.each do |page| %>
+                    <li<%= raw(' class="active"') if @parent_tab == :page and @page.id == page.id %>>
+                        <%= link_to page.title, university_page_path(@university, page) %>
+                    </li>
+                <% end %>
+            </ul>
+
+            <!-- Page content -->
+            <div class="tab-content">  
+
+                <%= content_for?(:university_detail_content) ? yield(:university_detail_content) : yield %>
+                
+            </div>
+
+        </div>
+
+    <% else %>
+
+        <div class="item-bare-content">
+            <%= content_for?(:university_detail_content) ? yield(:university_detail_content) : yield %>
+        </div>
+
+    <% end %>
+
+    <ul class="breadcrumb">
+        <li><%= link_to "Home", root_url %> <span class="divider">/</span></li>
+        <li><%= link_to @university.city.name, @university.city %> <span class="divider">/</span></li>
+        <%= yield(:university_breadcrumbs) if content_for?(:university_breadcrumbs) %>
+    </ul>
+
+<% end %>
+<%= render :template => "layouts/application" %>

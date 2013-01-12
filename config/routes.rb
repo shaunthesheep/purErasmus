@@ -7,6 +7,8 @@ Purerasmus::Application.routes.draw do
     match "/login" => "sessions#create", :via => :post
     match "/logout" => "sessions#destroy", :as => "logout"
 
+    match "/universities/:id/photo" => "universities#photo"
+
     # match "/universities/:id/pages/new" => "pages#new"
     # match "/universities/:id/pages/:page_id/edit" => "pages#edit"
     # match "/universities/:id/pages/:page_id" => "universities#show"

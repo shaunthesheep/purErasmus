@@ -83,7 +83,7 @@ $ ->
 			city_dropdown = $value.parents(".country-university-group").find(".city-dropdown")
 			city_dropdown.val(original_values[1])
 
-			# Update the univercity dropdown with this new city value.
+			# Update the university dropdown with this new city value.
 			update_universities city_dropdown, ->
 				# Select the university.
 				university_dropdown = $value.parents(".country-university-group").find(".university-dropdown")
