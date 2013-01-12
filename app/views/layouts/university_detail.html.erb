@@ -20,7 +20,7 @@
 
     <!-- Administration panel, visible only to administrator -->
     <div class="item-buttons">
-        <% if @parent_tab == :page %>
+        <% if @parent_tab == :page and @page %>
             <%= link_to "Edit page", edit_university_page_path(@university, @page), :class => "btn" %>
             <%= link_to "Delete page", university_page_path(@university, @page), :method => :delete, :class => "btn btn-danger" %>
             <div class="button-separator">

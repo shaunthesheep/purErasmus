@@ -6,10 +6,14 @@
     <li class="active"><%= @university.name_original %></li>
 <% end end %>
 
-<h4><%= @page.title %></h4>
+<% if @page %>
 
-<hr>
+	<h4><%= @page.title %></h4>
 
-<div class="page-content">
-    <%= raw @md_body %>
-</div>
+	<hr>
+
+	<div class="page-content">
+	    <%= raw @md_body %>
+	</div>
+
+<% end %>
