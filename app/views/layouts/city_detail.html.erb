@@ -1,7 +1,7 @@
 <% content_for :content do %>
 
     <div class="item-info">
-        <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= @city.name %>,<%= @city.country.name %>&zoom=10&size=470x280&sensor=false">
+        <img class="map-img" src="http://maps.googleapis.com/maps/api/staticmap?center=<%= @city.name %>,<%= @city.country.name %>&zoom=10&size=470x280&sensor=false">
         <div class="gradient"></div>
         <div class="info">
             <div class="info-cell">

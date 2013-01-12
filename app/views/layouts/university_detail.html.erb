@@ -1,7 +1,9 @@
 <% content_for :content do %>
 
     <div class="item-info">
-        <div class="hidden university-id" data-id="<%= @university.id %>"></div>
+        <div class="university-img">
+            <img data-url="<%= university_photo_path(@university) %>" />
+        </div>
         <div class="gradient"></div>
         <div class="info">
             <div class="info-cell">

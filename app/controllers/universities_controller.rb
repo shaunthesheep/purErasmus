@@ -98,13 +98,26 @@ class UniversitiesController < ApplicationController
     # GET /universities/:id/photo
     def photo
         @university = University.find(params[:id])
-
-        query = URI.encode("#{@university.name_original} #{@university.city.name} #{@university.city.country.name}")
         api_key = "AIzaSyAWyCseSbFQ2MckF9Dj0M0FyJlydtcTYIM"
+        default_image = "/university_default.png"
+
+        # Do a first request for the place.
+        query = URI.encode("#{@university.name_original} #{@university.city.name} #{@university.city.country.name}")
         uri = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{query}&key=#{api_key}&sensor=false"
 
         res = dorequest(uri)
-        render :text => res.body
+
+        # Parse the response.
+        place_res = ActiveSupport::JSON.decode(res.body)
+
+        # First, redirect to the default photo if we didn't find any.
+        return redirect_to(default_image) if place_res["results"].size == 0 || !place_res["results"][0]["photos"]
+
+        # Then extract the reference to the photo.
+        photo_ref = place_res["results"][0]["photos"][0]["photo_reference"]
+
+        # Now redirect to the actual photo.
+        redirect_to "https://maps.googleapis.com/maps/api/place/photo?photoreference=#{photo_ref}&key=#{api_key}&sensor=false&maxwidth=470"
     end
 
     def dorequest (url)

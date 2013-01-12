@@ -22,12 +22,21 @@
 	width: 100%;
 	height: 200px;
 	position: relative;
-	img {
+	.map-img {
 		position: absolute;
 		top: -40px;
 		right: 0;
 		border: none;
 		clip: rect(40px, 470px, 240px, 0px);
+	}
+	.university-img {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 470px;
+		height: 200px;
+		text-align: right;
+		overflow: hidden;
 	}
 	.gradient {
 		position: absolute;
