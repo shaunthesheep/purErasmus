@@ -17,8 +17,12 @@
 		<tbody>
 		<% @city.universities.each do |u| %>
 			<tr>
-				<td><%= u.name_english %></td>
-				<td>5,000</td>
+				<td>
+					<%= link_to u.name_english, u %>
+				</td>
+				<td>
+					<%= link_to "5,000", u %>
+				</td>
 			</tr>
 		<% end %>
 		</tbody>

@@ -109,10 +109,21 @@
 		}
 		tr:hover td {
 			background-color: #2B2B2B;
-			color: white;
+
+			a {
+				color: white;
+			}
 		}
 		a {
-			display: table-row;
+			display: block;
+			width: 100%;
+			height: 100%;
+			color: #333333;
+
+			&:hover {
+				text-decoration: none;
+				color: white;
+			}
 		}
 	}
 }
