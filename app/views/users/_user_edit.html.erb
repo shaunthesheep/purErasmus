@@ -58,6 +58,11 @@
 
 	<div class="country-university-group">
 
+		<% # Original values for the multiple dropdowns of the Home location. %>
+		<% if u and u.home_university %>
+			<div class="hidden original-location" data-location="<%= "#{u.home_university.city.country.id},#{u.home_university.city.id},#{u.home_university.id}" %>"></div>
+		<% end %>
+
   		<!-- Home country -->
 	    <div class="control-group">
 	        <%= f.label :home_country_id, "Home country", :class => "control-label" %>
@@ -96,7 +101,12 @@
 
     <div id="exchange_student_location" class="country-university-group">
 
-	    <!-- Home country -->
+    	<% # Original values for the multiple dropdowns of the Foreign location, if any. %>
+		<% if u and u.foreign_university %>
+			<div class="hidden original-location" data-location="<%= "#{u.foreign_university.city.country.id},#{u.foreign_university.city.id},#{u.foreign_university.id}" %>"></div>
+		<% end %>
+
+	    <!-- Exchange country -->
 	    <div class="control-group">
 	        <%= f.label :foreign_country_id, "Home country", :class => "control-label" %>
 	        <div class="controls">
@@ -104,7 +114,7 @@
 	        </div>
 	    </div>
 
-	    <!-- Home city -->
+	    <!-- Exchange city -->
 	    <div class="control-group">
 	        <%= f.label :foreign_city_id, "Home city", :class => "control-label" %>
 	        <div class="controls">

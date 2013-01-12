@@ -9,8 +9,10 @@
 
 <hr>
 
+<% # Display the actual "Edit User" form. %>
 <%= form_for @user, :html => { :class => "form-horizontal" } do |f| %>
 	<%= render :partial => "user_edit", :locals => {
+		:u => @user,
 		:f => f,
 		:countries => @countries
 	} %>
