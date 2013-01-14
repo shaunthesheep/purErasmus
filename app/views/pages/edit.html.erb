@@ -4,7 +4,7 @@
 <% end end %>
 
 <% if @university then content_for :university_breadcrumbs do %>
-	<li><%= link_to @university.name_original, @university %></li>
+	<li><%= link_to @university.name_original, @university %> <span class="divider">/</span></li>
 	<li class="active">Edit page</li>
 <% end end %>
 
