@@ -1,12 +1,13 @@
 ---
 erasmus.png: erasmus-05ed0d2f515e1056e5ea8fa7bdba5f94.png
 erasmus/index.png: erasmus-05ed0d2f515e1056e5ea8fa7bdba5f94.png
-index1final: index1final
-index2final: index2final
-index3: index3
-index3final: index3final
+index1final.png: index1final-4a0933ad5ef2ba6871561212c9e4100b.png
+index2final.png: index2final-c06ca247811456da6ee4d946fb7d6c09.png
+index3final.png: index3final-f3cfc1e335b0ab6285fb27c955a2349e.png
 rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
+university_default.png: university_default-0cf723c5ca287431a876abc5094afaf1.png
+university_default/index.png: university_default-0cf723c5ca287431a876abc5094afaf1.png
 application.js: application-ac14e1c7e898788fb8496c0c615562eb.js
 application/index.js: application-ac14e1c7e898788fb8496c0c615562eb.js
 application.css: application-c196e32f236c6bf33d2767a9d8a148e9.css
