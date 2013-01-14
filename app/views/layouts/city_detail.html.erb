@@ -20,7 +20,7 @@
     <div class="item-buttons">
         <% if @parent_tab == :page %>
             <%= link_to "Edit page", edit_city_page_path(@city, @page), :class => "btn" %>
-            <%= link_to "Delete page", university_page_path(@university, @page), 
+            <%= link_to "Delete page", city_page_path(@city, @page), 
                 :class => "btn btn-danger",
                 :method => :delete, 
                 :confirm => "Are you sure you want to delete this page?" %>
@@ -39,7 +39,7 @@
             :confirm => "Are you sure you want to delete this city?" %>
     </div>
 
-    <% if @parent_tab != :page_new %>
+    <% if @parent_tab and @parent_tab != :page_new %>
 
         <div class="tabbable tabs-left item-content">
 
