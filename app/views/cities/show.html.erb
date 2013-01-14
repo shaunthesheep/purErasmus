@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="right-buttons">
-	<%= link_to "Add a University", new_university_path, :class => "btn" %>
+	<%= link_to "Add a University", new_university_path(:city => @city.id), :class => "btn" %>
 </div>
 
 <!-- Table with a list of universities. -->

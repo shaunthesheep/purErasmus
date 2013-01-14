@@ -8,17 +8,20 @@
         <div class="info">
             <div class="info-cell">
                 <div>
-                    <p>
-                        <h1>
-                            <%= @university.name_original %>
-                        <h1>
-                    </p>
-                    <p>
-                        <h2>
-                            <%= link_to @university.city.name, @university.city %>, 
-                            <%= link_to @university.city.country.name, @university.city.country %>
-                        </h2>
-                    </p>
+                    <h1>
+                        <%= @university.name_original %>
+                    </h1>
+                    <h2>
+                        <%= link_to @university.city.name, @university.city %>, 
+                        <%= link_to @university.city.country.name, @university.city.country %>
+                    </h2>
+                    <% if @university.website 
+                        website_uri = URI.parse(@university.website)
+                        %>
+                        <p>
+                            <%= link_to website_uri.host, @university.website %>
+                        </p>
+                    <% end %>
                 </div>
                 <div class="description">
                     

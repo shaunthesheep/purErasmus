@@ -22,6 +22,7 @@
 	width: 100%;
 	height: 200px;
 	position: relative;
+
 	.map-img {
 		position: absolute;
 		top: -40px;
@@ -63,14 +64,24 @@
 			color: white;
 			margin: 0;
 			font-size: 2.5em;
-			display: inline;
 		}
 		h2 {
 			font-size: 1.5em;
-			display: inline;	
 			font-weight: normal;	
-			a {
-				color: #CECECE;		
+			color: #b1b1b1;
+			margin: 0;
+		}
+		a {
+			color: #CECECE;	
+
+			&:hover {
+				color: white;
+			}	
+		}
+		.inline {
+			h1, h2 {
+				display: inline-block;
+				padding-right: 5px;
 			}
 		}
 		.description {

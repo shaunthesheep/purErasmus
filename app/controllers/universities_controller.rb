@@ -56,6 +56,9 @@ class UniversitiesController < ApplicationController
     def new
         @university = University.new
         @cities = City.all.map { |city| [city.name, city.id] }
+
+        # Select a city if needed.
+        @university.city = City.find(params[:city]) if params[:city]
     end
 
     # GET /universities/:id/edit
