@@ -23,7 +23,7 @@ class PagesController < ApplicationController
     def retrieve_page
         page_id = params[:id]
         if page_id
-            @page = Page.find()
+            @page = Page.find(page_id)
         elsif @university and @university.pages.size > 0
             @page = @university.pages[0]
         end
