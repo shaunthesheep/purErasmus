@@ -29,6 +29,16 @@
                                 <ul class="dropdown-menu">
                                     <li><%= link_to "Find a City", cities_path %></li>
                                     <li class="divider"></li>
+                                    <% # Display a link to the home and foreign cities of the user, if any. %>
+                                    <% if @site_user %>
+                                        <% if @site_user.home_university %>
+                                            <li><%= link_to @site_user.home_university.city.name, @site_user.home_university.city %></li>
+                                        <% end %>
+                                        <% if @site_user.foreign_university and @site_user.foreign_university.city != @site_user.home_university.city %>
+                                            <li><%= link_to @site_user.foreign_university.city.name, @site_user.foreign_university.city %></li>
+                                        <% end %>
+                                        <li class="divider"></li>            
+                                    <% end %>
                                     <li><%= link_to "Add a City", new_city_path %></li>
                                 </ul>
                             </li>
@@ -40,6 +50,16 @@
                                 <ul class="dropdown-menu">
                                     <li><%= link_to "Find a University", universities_path %></li>
                                     <li class="divider"></li>
+                                    <% # Display a link to the home and foreign universities of the user, if any. %>
+                                    <% if @site_user %>
+                                        <% if @site_user.home_university %>
+                                            <li><%= link_to @site_user.home_university.name_original, @site_user.home_university %></li>
+                                        <% end %>
+                                        <% if @site_user.foreign_university and @site_user.foreign_university != @site_user.home_university %>
+                                            <li><%= link_to @site_user.foreign_university.name_original, @site_user.foreign_university %></li>
+                                        <% end %>
+                                        <li class="divider"></li>
+                                    <% end %>
                                     <li><%= link_to "Add a University", new_university_path %></li>
                                 </ul>
                             </li>
