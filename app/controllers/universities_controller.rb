@@ -102,7 +102,7 @@ class UniversitiesController < ApplicationController
     def photo
         @university = University.find(params[:id])
         api_key = "AIzaSyAWyCseSbFQ2MckF9Dj0M0FyJlydtcTYIM"
-        default_image = "/university_default.png"
+        default_image = "/assets/university_default.png"
 
         # Do a first request for the place.
         query = URI.encode("#{@university.name_original} #{@university.city.name} #{@university.city.country.name}")
