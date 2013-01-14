@@ -72,7 +72,7 @@ class UniversitiesController < ApplicationController
         if @university.save
             redirect_to university_path(@university)
         else 
-            render "new"
+            render :new
         end
     end
 
@@ -83,7 +83,7 @@ class UniversitiesController < ApplicationController
         if @university.update_attributes(params[:university])
             redirect_to university_path(@university)
         else
-            render "edit"
+            render :edit
         end
     end
 

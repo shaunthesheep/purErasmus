@@ -11,6 +11,8 @@ $ ->
 	university_img[0].onload = ->
 		# Once loaded, vertically center the picture.
 		university_img.css("margin-top", -((university_img.height() - university_img.parent().height()) / 2))
+		university_img.show()
 
 	# Start loading the picture by setting its URL.
+	university_img.hide()
 	university_img.attr("src", university_img.data("url"))

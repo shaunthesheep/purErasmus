@@ -69,7 +69,7 @@ class CitiesController < ApplicationController
                 :message => "City " + @city.name + " was created."
             }
         else 
-            render "new"
+            render :new
         end
     end
 
@@ -81,7 +81,7 @@ class CitiesController < ApplicationController
                 :message => "City " + @city.name + " was updated."
             }
        else
-            render "edit"
+            render :edit
         end
     end
 

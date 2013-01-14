@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to "#{city_topic_path(topic.city, topic)}#comment#{@comment.id}" 
     else 
-      render "new"
+      render :new
     end
   end
 

@@ -72,7 +72,7 @@ class TopicsController < ApplicationController
         if @topic.save
             redirect_to "#{city_topics_path(@city)}#topic#{@topic.id}"
         else
-            render "new"
+            render :new
         end
     end
 

@@ -53,7 +53,7 @@ class UsersController < ApplicationController
                 :message => "Your are now a Purerasmus member."
             }
         else 
-            render :action => "new"
+            render :new
         end
     end
 
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
                 :message => "Your profile was updated."
             }
         else
-            render "edit"
+            render :edit
         end
     end
 

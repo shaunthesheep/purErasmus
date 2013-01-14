@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
 			}
 		else
 			# If the authentication failed, show the login form again.
-			render "new"
+			render :new
 		end
 	end
 
