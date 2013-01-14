@@ -52,6 +52,7 @@ class PagesController < ApplicationController
     # GET /universities/:university_id/pages/new
     # Action method to display a form to create a new page.
     def new
+        @parent_tab = :page_new
         @page = Page.new
     end
 

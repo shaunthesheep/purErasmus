@@ -42,7 +42,9 @@
                 <div></div>
             </div>
         <% end %>
-        <%= link_to "Add Page", new_university_page_path(@university), :class => "btn" %>
+        <% if @parent_tab != :page_new %>
+            <%= link_to "Add Page", new_university_page_path(@university), :class => "btn" %>
+        <% end %>
         <%= link_to "Edit", edit_university_path(@university), :class => "btn" %>
         <%= link_to "Delete", @city, 
             :class => "btn btn-danger",
