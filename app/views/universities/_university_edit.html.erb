@@ -1,0 +1,36 @@
+<fieldset>
+    <div class="control-group">
+        <%= f.label :name_original, "Original name", :class => "control-label" %>
+        <div class="controls">
+            <%= f.text_field :name_original, :placeholder => "Original name" %>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :name_english, "English name", :class => "control-label" %>
+        <div class="controls">
+            <%= f.text_field :name_english, :placeholder => "English name" %>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :website, "Website", :class => "control-label" %>
+        <div class="controls">
+            <%= f.text_field :website, :placeholder => "Website" %>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :contact, "Contact", :class => "control-label" %>
+        <div class="controls">
+            <%= f.text_field :contact, :placeholder => "Contact" %>
+        </div>
+    </div>
+
+	<div class="control-group">
+	     <%= f.label :city_id, "City", :class => "control-label" %>
+	    <div class="controls">
+	        <%= f.select :city_id, [["Select one", -1]].concat(@cities), :class => "city-dropdown" %>
+	    </div>
+	</div>
+</fieldset>
