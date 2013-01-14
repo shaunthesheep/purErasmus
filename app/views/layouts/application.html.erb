@@ -30,7 +30,7 @@
                                     <li><%= link_to "Find a City", cities_path %></li>
                                     <li class="divider"></li>
                                     <% # Display a link to the home and foreign cities of the user, if any. %>
-                                    <% if @site_user and (@site_user.home_university or @site.foreign_university) %>
+                                    <% if @site_user and (@site_user.home_university or @site_user.foreign_university) %>
                                         <% if @site_user.home_university %>
                                             <li><%= link_to @site_user.home_university.city.name, @site_user.home_university.city %></li>
                                         <% end %>
